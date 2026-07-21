@@ -40,6 +40,12 @@ Transactions, cursors and stuff
 
 # Getting started, through Docker
 
+<!--
+While running databases in k8s haven't been popular in our company, containerized environments are
+essential for swd development these days. Testcontainers make possible to run the integration tests in your laptop,
+what not to like?!
+-->
+
 ---
 
 ![bg contain](img/docker0.png)
@@ -56,6 +62,22 @@ the tests run faster. But there's a catch.
 <!--
 If plugins used for daily life change database behavior in some way, then these plugins must be added to the
 development containers as well. So after some pluggins and pgbouncer...
+-->
+
+---
+
+# Installation: buy or build
+
+How do you add neccessary plugins?
+
+---
+
+# In search for a concepts guide...
+
+Same concept, different implementation, much conusion
+
+<!--
+People tend to assume that same word means same thing in Oracle and PostgreSQL. Well...
 -->
 
 ---
