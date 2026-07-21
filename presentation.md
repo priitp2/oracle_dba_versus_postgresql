@@ -113,3 +113,11 @@ Login roles are database server level objects. Role can represent either databas
 Schema in PG is a logical namespace. Database objects can be reassigned between schemas.
 -->
 ---
+
+# Deployment options
+
+Cloud-native deployment: one PostgreSQL server, one database, one application
+
+<!--
+Because lack of workload isolation makes it very hard to do other deployment models
+-->
