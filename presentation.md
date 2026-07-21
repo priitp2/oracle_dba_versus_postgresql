@@ -81,3 +81,35 @@ People tend to assume that same word means same thing in Oracle and PostgreSQL. 
 -->
 
 ---
+
+![bg contain](img/pg0.png)
+
+<!--
+PostgreSQL cluster contains configuration, memory structures and common processes. Reminds Oracle instance.
+-->
+
+---
+
+![bg contain](img/pg1.png)
+
+<!--
+Every PG instance manages one or more databases. Database in PG is the topmost hierarchical level of organizing SQL objects and stuff. 
+-->
+
+---
+
+![bg contain](img/pg2.png)
+
+<!--
+
+Login roles are database server level objects. Role can represent either database user or group of users. Roles can own database objects and can assign privileges on those objects to other roles. 
+-->
+
+---
+
+![bg contain](img/pg3.png)
+
+<!--
+Schema in PG is a logical namespace. Database objects can be reassigned between schemas.
+-->
+---
