@@ -35,3 +35,26 @@ Observability
 DRCP and that networks thing versus pgbouncer and cats and dogs
 Transactions, cursors and stuff
 -->
+
+---
+
+# Getting started, through Docker
+
+---
+
+![bg contain](img/docker0.png)
+
+<!--
+Size matters: smaller containers are easier to user. For example, in case of testcontainers, smaller image makes
+the tests run faster. But there's a catch.
+-->
+---
+
+![bg contain](img/docker1.png)
+
+<!--
+If plugins used for daily life change database behavior in some way, then these plugins must be added to the
+development containers as well. So after some pluggins and pgbouncer...
+-->
+
+---
