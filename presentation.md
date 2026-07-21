@@ -7,7 +7,7 @@ paginate: true
 ---
 
 # Oracle DBA discovers PostgreSQL
-### Priit Piipuu
+### Ilmar Kerm & Priit Piipuu
 ### set-date-here
 
 ---
@@ -48,6 +48,7 @@ Transactions, cursors and stuff
 Size matters: smaller containers are easier to user. For example, in case of testcontainers, smaller image makes
 the tests run faster. But there's a catch.
 -->
+
 ---
 
 ![bg contain](img/docker1.png)
