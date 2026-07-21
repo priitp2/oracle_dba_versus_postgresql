@@ -74,7 +74,7 @@ How do you add neccessary plugins?
 
 # In search for a concepts guide...
 
-Same concept, different implementation, much conusion
+Same concept, different implementation, much confusion
 
 <!--
 People tend to assume that same word means same thing in Oracle and PostgreSQL. Well...
