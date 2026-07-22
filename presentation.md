@@ -121,3 +121,18 @@ Cloud-native deployment: one PostgreSQL server, one database, one application
 <!--
 Because lack of workload isolation makes it very hard to do other deployment models
 -->
+
+---
+
+# Tablespaces
+
+### Oracle
+
+Quotas, export/import, configuration and stuff
+
+### PostgreSQL
+
+A glorified symlink
+
+---
+
