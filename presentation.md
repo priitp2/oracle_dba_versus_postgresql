@@ -75,9 +75,11 @@ How do you add neccessary plugins?
 # In search for a concepts guide...
 
 Same concept, different implementation, much confusion
+Same word, different meaning, even more confusion
 
 <!--
 People tend to assume that same word means same thing in Oracle and PostgreSQL. Well...
+Saying that "database in PG is like PDB" is misleading due to the differences
 -->
 
 ---
@@ -112,6 +114,26 @@ Login roles are database server level objects. Role can represent either databas
 <!--
 Schema in PG is a logical namespace. Database objects can be reassigned between schemas.
 -->
+---
+
+# Database in PostgreSQL
+
+Topmost hierarchical level for organizing SQL objects
+Databases are isolated, but can access cluster-level objects
+---
+
+# Schema
+
+### In Oracle
+
+Tightly coupled with user account
+Every user gets its own schema
+Schema contains the data owned by user
+
+### In PostgreSQL
+
+Logical namespace for named objects
+
 ---
 
 # Deployment options
