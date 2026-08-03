@@ -88,6 +88,8 @@ Saying that "database in PG is like PDB" is misleading due to the differences
 
 <!--
 PostgreSQL cluster contains configuration, memory structures and common processes. Reminds Oracle instance.
+
+Some objects are cluster level: roles, databases, tablespaces
 -->
 
 ---
@@ -120,6 +122,7 @@ Schema in PG is a logical namespace. Database objects can be reassigned between 
 
 Topmost hierarchical level for organizing SQL objects
 Databases are isolated, but can access cluster-level objects
+
 ---
 
 # Schema
@@ -158,3 +161,39 @@ A glorified symlink
 
 ---
 
+# Partitioning for OLTP (I)
+
+Data life cycle management: dropping old partition is faster than delete
+Old data can be archived or made available from secondary storage (hybrid partitioning with Parquet)
+Works really well with time series
+
+---
+
+# Partitioning for OLTP (II)
+
+Downside: most of the queries do not benefit from partition pruning
+
+<!--
+For example: show me my last 10 transactions
+-->
+---
+
+![bg contain](img/partitioning_nopart.png)
+
+---
+
+![bg contain](img/partitioning_local.png)
+
+---
+
+![bg contain](img/partitioning_global.png)
+
+---
+
+# Workload separation
+
+### Oracle
+
+### PostgreSQL
+
+---
