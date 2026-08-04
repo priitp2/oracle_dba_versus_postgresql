@@ -190,6 +190,12 @@ For example: show me my last 10 transactions
 
 ---
 
+# Partitioning for OLTP: global indexes
+
+
+---
+
+
 # Workload separation
 
 ### Oracle
