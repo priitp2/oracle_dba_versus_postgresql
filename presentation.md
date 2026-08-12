@@ -161,6 +161,18 @@ A glorified symlink
 
 ---
 
+# Transactions
+
+### Oracle
+
+Error aborts the statement
+
+### PostgreSQL
+
+Error aborts the statement and transaction
+
+---
+
 # Partitioning for OLTP (I)
 
 Data life cycle management: dropping old partition is faster than delete
