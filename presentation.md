@@ -22,6 +22,16 @@ Blog: https://priitp.wordpress.com,
 
 ---
 
+# Whoami: Ilmar Kerm
+
+Database administrator at FDJ United
+Oracle Ace Associate (ex-Pro)
+Member of Symposium 42
+Blog: https://ilmarkerm.eu,
+@ilmarkerm.eu
+
+---
+
 # And the story begins...
 
 From installation to first steps to production usage
@@ -69,6 +79,17 @@ development containers as well. So after some pluggins and pgbouncer...
 # Installation: buy or build
 
 How do you add neccessary plugins?
+
+---
+
+k8s + PGCloudNative
+
+---
+
+# Compiling from source: Confronting fear is the destiny of the PGMaster
+
+Compiling Postgres from source is actually quite straight-forward and easy
+Example:
 
 ---
 
@@ -195,6 +216,8 @@ Data life cycle management: dropping old partition is faster than delete
 Old data can be archived or made available from secondary storage (hybrid partitioning with Parquet)
 Works really well with time series
 
+But... ask do you actually need it. In Postgres there is less need.
+
 ---
 
 # Partitioning for OLTP (II)
@@ -220,14 +243,159 @@ For example: show me my last 10 transactions
 
 # Partitioning for OLTP: global indexes
 
+do not exist
 
 ---
-
 
 # Workload separation
 
 ### Oracle
 
 ### PostgreSQL
+
+---
+
+# Scaling
+
+PostgreSQL is single instance
+How to scale horizontally
+
+poolers: pgbouncer, pgdog
+yugabyte and others
+
+
+---
+
+# Security
+
+User authentication
+* OAuth?
+* CMU pg_ident
+* TLS thing we do with pg_ident
+
+ROLE is a cluster level thing, not database object
+
+---
+
+Oracle practices that are also essential to Postgres
+
+* huge_pages
+
+---
+
+memory management
+
+---
+
+Things that Oracle has and you'll miss in PG
+
+* APEX
+
+---
+
+Things that PG has and you can't believe you had to live without
+And thing that Oracle marketing shouls as revolutionary, but PG had had them for ages
+
+multiple server side programming languages
+!!! predictable major version release dates
+
+---
+
+Things that Oracle has, but actually are meh
+
+* ASM
+* TDE
+
+---
+
+Simulating things to get close or exceed to oracle features
+
+Compression -> btrfs or san/nas
+Encryption -> LUKS/cryptsetup
+ASM -> LVM
+Tracing! -> 10046, 10053, ...
+OEM -> the Roman thing, Prometheus+Grafana
+resource manager -> systemd limits
+out-of-place patching
+
+NB! In Postgres, you are EXPECTED to use external tools, OS tools, extensions to add missing features
+Postgres Core is intentionally slim
+
+---
+
+Yes, Postgres has these enterprise Oracle features for free
+
+* Parallelism
+* Database links
+* Direct IO
+* Centrally managed users
+* Active Data Guard
+* GoldenGate
+
+---
+
+Stop worrying about collations
+
+builtin.UTF-8 has arrived
+
+---
+
+High availability
+
+Patroni
+How clients find highly available database servers (PG connection strings), not all drivers are created equal
+
+---
+
+Query planning
+
+---
+
+Migration strategies
+
+what we do, overview of datamover
+
+switchover steps
+
+what about pl/sql
+
+---
+
+Real time replication from Oracle
+
+extracting data from oracle be hard
+
+Debezium
+* Logminer - emoji of dying from slowness
+* OLR
+* and if you have the license X-Streams (this is what we do)
+
+---
+
+Backups... maybe not much to say and skip
+
+---
+
+Cloud provider proprietary Postgres vs stock PG
+
+just discussion
+pros cons
+
+kinda sucks that cloud providers develop their own custom features and don't contribute it
+
+---
+
+Monitoring!!!
+
+The Roman thing
+
+---
+
+Developer experiences from migration
+
+how have devs reacted
+some issues raised
+data type mappings. TIMESTAMP(9) feels stupid, but it was widely reported.
+learnings
 
 ---
