@@ -173,6 +173,22 @@ Error aborts the statement and transaction
 
 ---
 
+# DDL statements
+
+### Oracle
+
+DDL statement commits the transaction
+
+### PostgreSQL
+
+DDL is transactional
+
+<!--
+But what is the real-life use case for transactional DDL, since objects will get AccessExclusiveLock?
+-->
+
+---
+
 # Partitioning for OLTP (I)
 
 Data life cycle management: dropping old partition is faster than delete
