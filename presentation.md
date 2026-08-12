@@ -400,5 +400,6 @@ how have devs reacted
 some issues raised
 data type mappings. TIMESTAMP(9) feels stupid, but it was widely reported.
 learnings
+how helpful was AI during code migration
 
 ---
