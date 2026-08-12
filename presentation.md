@@ -36,6 +36,9 @@ Blog: https://ilmarkerm.eu,
 
 From installation to first steps to production usage
 
+"the only database that exists today" (ref to how everything in the database world today is PG related and this is the only database modern devs think exists)
+"the linux of databases"
+
 <!--
 Similar concepts, similar words (PG cluster, database, roles and schemas)
 Tablespaces in Oracle and PostgreSQL
