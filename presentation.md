@@ -225,27 +225,39 @@ A glorified symlink
 
 ---
 
-# Transactions
+<!-- _class: columns -->
+<div>
 
-### Oracle
+# Transactions in Oracle
 
 Error aborts the statement
 
-### PostgreSQL
+</div>
+<div>
+
+# Transactions in PostgreSQL
 
 Error aborts the statement and transaction
 
+</div>
+
 ---
 
-# DDL statements
+<!-- _class: columns -->
+<div>
 
-### Oracle
+# DDL statements in Oracle
+
 
 DDL statement commits the transaction
 
-### PostgreSQL
+</div>
+<div>
+
+# DDL statements in PostgreSQL
 
 DDL is transactional
+</div>
 
 <!--
 But what is the real-life use case for transactional DDL, since objects will get AccessExclusiveLock?
