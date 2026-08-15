@@ -48,10 +48,7 @@ Blog: https://ilmarkerm.eu,
 
 # And the story begins...
 
-From installation to first steps to production usage
-
-"the only database that exists today" (ref to how everything in the database world today is PG related and this is the only database modern devs think exists)
-"the linux of databases"
+From PostgreSQL installation to first steps to production usage
 
 <!--
 Similar concepts, similar words (PG cluster, database, roles and schemas)
@@ -63,6 +60,16 @@ DRCP and that networks thing versus pgbouncer and cats and dogs
 Transactions, cursors and stuff
 -->
 
+---
+
+# PostgreSQL
+
+"The only database that exists today"
+"The Linux of databases"
+
+<!--
+Everything in the database world today is PG related and this is the only database modern devs think exists
+-->
 ---
 
 # Getting started, through Docker
