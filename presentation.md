@@ -4,6 +4,13 @@ theme: default
 size: 4K
 auto-scaling: true
 paginate: true
+style: |
+  section.columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
 ---
 
 # Oracle DBA discovers PostgreSQL
@@ -11,6 +18,9 @@ paginate: true
 ### set-date-here
 
 ---
+
+<!-- _class: columns -->
+<div>
 
 # Whoami: Priit Piipuu
 
@@ -20,7 +30,9 @@ Member of Symposium 42
 Blog: https://priitp.wordpress.com,
 @ppiipuu.bsky.social
 
----
+</div>
+
+<div>
 
 # Whoami: Ilmar Kerm
 
@@ -29,6 +41,8 @@ Oracle Ace Associate (ex-Pro)
 Member of Symposium 42
 Blog: https://ilmarkerm.eu,
 @ilmarkerm.eu
+
+</div>
 
 ---
 
