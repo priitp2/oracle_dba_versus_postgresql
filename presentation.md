@@ -168,6 +168,10 @@ Schema in PG is a logical namespace. Database objects can be reassigned between 
 Topmost hierarchical level for organizing SQL objects
 Databases are isolated, but can access cluster-level objects
 
+<!--
+while 'database' might sound similar to PDB, it is not. It behaves differently and has differen features.
+-->
+
 ---
 
 # Schema
