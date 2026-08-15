@@ -174,17 +174,24 @@ while 'database' might sound similar to PDB, it is not. It behaves differently a
 
 ---
 
-# Schema
+<!-- _class: columns -->
+<div>
 
-### In Oracle
+# Schema in Oracle
 
 Tightly coupled with user account
 Every user gets its own schema
 Schema contains the data owned by user
 
-### In PostgreSQL
+</div>
+
+<div>
+
+# Schema in PostgreSQL
 
 Logical namespace for named objects
+
+</div>
 
 ---
 
@@ -198,15 +205,23 @@ Because lack of workload isolation makes it very hard to do other deployment mod
 
 ---
 
-# Tablespaces
+<!-- _class: columns -->
+<div>
 
-### Oracle
+# Tablespaces in Oracle
 
-Quotas, export/import, configuration and stuff
+Quotas
+Export/import
+Configuration and stuff
 
-### PostgreSQL
+</div>
+<div>
+
+# Tablespces in PostgreSQL
 
 A glorified symlink
+
+</div>
 
 ---
 
