@@ -4,6 +4,13 @@ theme: default
 size: 4K
 auto-scaling: true
 paginate: true
+style: |
+  section.columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
 ---
 
 # Oracle DBA discovers PostgreSQL
@@ -11,6 +18,9 @@ paginate: true
 ### set-date-here
 
 ---
+
+<!-- _class: columns -->
+<div>
 
 # Whoami: Priit Piipuu
 
@@ -20,7 +30,9 @@ Member of Symposium 42
 Blog: https://priitp.wordpress.com,
 @ppiipuu.bsky.social
 
----
+</div>
+
+<div>
 
 # Whoami: Ilmar Kerm
 
@@ -30,14 +42,13 @@ Member of Symposium 42
 Blog: https://ilmarkerm.eu,
 @ilmarkerm.eu
 
+</div>
+
 ---
 
 # And the story begins...
 
-From installation to first steps to production usage
-
-"the only database that exists today" (ref to how everything in the database world today is PG related and this is the only database modern devs think exists)
-"the linux of databases"
+From PostgreSQL installation to first steps to production usage
 
 <!--
 Similar concepts, similar words (PG cluster, database, roles and schemas)
@@ -49,6 +60,16 @@ DRCP and that networks thing versus pgbouncer and cats and dogs
 Transactions, cursors and stuff
 -->
 
+---
+
+# PostgreSQL
+
+"The only database that exists today"
+"The Linux of databases"
+
+<!--
+Everything in the database world today is PG related and this is the only database modern devs think exists
+-->
 ---
 
 # Getting started, through Docker
@@ -149,19 +170,30 @@ Schema in PG is a logical namespace. Database objects can be reassigned between 
 Topmost hierarchical level for organizing SQL objects
 Databases are isolated, but can access cluster-level objects
 
+<!--
+while 'database' might sound similar to PDB, it is not. It behaves differently and has differen features.
+-->
+
 ---
 
-# Schema
+<!-- _class: columns -->
+<div>
 
-### In Oracle
+# Schema in Oracle
 
 Tightly coupled with user account
 Every user gets its own schema
 Schema contains the data owned by user
 
-### In PostgreSQL
+</div>
+
+<div>
+
+# Schema in PostgreSQL
 
 Logical namespace for named objects
+
+</div>
 
 ---
 
@@ -175,25 +207,37 @@ Because lack of workload isolation makes it very hard to do other deployment mod
 
 ---
 
-# Tablespaces
+<!-- _class: columns -->
+<div>
 
-### Oracle
+# Tablespaces in Oracle
 
-Quotas, export/import, configuration and stuff
+Quotas
+Export/import
+Configuration and stuff
 
-### PostgreSQL
+</div>
+<div>
+
+# Tablespces in PostgreSQL
 
 A glorified symlink
 
+</div>
+
 ---
 
-# Transactions
+<!-- _class: columns -->
+<div>
 
-### Oracle
+# Transactions in Oracle
 
 Error aborts the statement
 
-### PostgreSQL
+</div>
+<div>
+
+# Transactions in PostgreSQL
 
 Error aborts the statement and transaction
 savepoints are possible, but more expensive
@@ -206,17 +250,25 @@ savepoints are possible, but more expensive
 
 Delete and rollback are cheaper
 
+</div>
+
 ---
 
-# DDL statements
+<!-- _class: columns -->
+<div>
 
-### Oracle
+# DDL statements in Oracle
+
 
 DDL statement commits the transaction
 
-### PostgreSQL
+</div>
+<div>
+
+# DDL statements in PostgreSQL
 
 DDL is transactional
+</div>
 
 <!--
 But what is the real-life use case for transactional DDL, since objects will get AccessExclusiveLock?
