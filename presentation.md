@@ -87,6 +87,8 @@ How do you add neccessary plugins?
 
 k8s + PGCloudNative
 
+the tastiest bit - automated and almost online major version upgrade
+
 ---
 
 # Compiling from source: Confronting fear is the destiny of the PGMaster
@@ -194,6 +196,15 @@ Error aborts the statement
 ### PostgreSQL
 
 Error aborts the statement and transaction
+savepoints are possible, but more expensive
+
+---
+
+# MVCC
+
+### Postgres
+
+Delete and rollback are cheaper
 
 ---
 
@@ -293,6 +304,12 @@ memory management
 Things that Oracle has and you'll miss in PG
 
 * APEX
+
+Things you just have to accept and live with
+
+* XID wraparound
+* occasionally doc says to rebuild indexes
+* Long idle transactions (on hot standby)
 
 ---
 
