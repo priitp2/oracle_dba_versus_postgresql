@@ -46,6 +46,10 @@ Blog: https://ilmarkerm.eu,
 
 ---
 
+![bg contain](img/qrcode_github.com.png)
+
+---
+
 # And the story begins...
 
 From PostgreSQL installation to first steps to production usage
