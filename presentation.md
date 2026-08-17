@@ -104,6 +104,13 @@ development containers as well. So after some pluggins and pgbouncer...
 
 How do you add neccessary plugins?
 
+<!--
+With the help of plugins you can turn PostgreSQL into a converged database. Even if you do not
+want to have all the functionality there is, there are still plugins you need to make PostgreSQL usable.
+
+Adding plugins opens another set of challenges...
+-->
+
 ---
 
 k8s + PGCloudNative
@@ -471,4 +478,9 @@ data type mappings. TIMESTAMP(9) feels stupid, but it was widely reported.
 learnings
 how helpful was AI during code migration
 
+<!--
+
+17.08.2026: we have migrated 13 services out of 231(?) known. So this isn't a representative sample
+
+-->
 ---
