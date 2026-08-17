@@ -316,7 +316,9 @@ For example: show me my last 10 transactions
 
 # Partitioning for OLTP: global indexes
 
-do not exist
+### In PostgreSQL...
+
+Do not exist
 
 ---
 
@@ -360,11 +362,23 @@ memory management
 
 ---
 
-Things that Oracle has and you'll miss in PG
+# Things that Oracle has and you'll miss in PG
 
 * APEX
 
-Things you just have to accept and live with
+### But there are possible alternatives for the brave
+
+* Buildbase
+* Appsmith
+* Retool
+* Tooljet
+
+<!--
+Source: kagi.com. Haven't tried any of this
+-->
+---
+
+# Things you just have to accept and live with
 
 * XID wraparound
 * occasionally doc says to rebuild indexes
