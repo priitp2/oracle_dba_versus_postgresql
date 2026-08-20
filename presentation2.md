@@ -165,6 +165,19 @@ PostgreSQL must be compiled already with the final software destination in mind
 
 ---
 
+# Data Protection
+
+standby is built in
+sync also
+
+Protection modes:
+* SYNC
+* FAST-SYNC
+* ASYNC
+* also wait for apply
+
+---
+
 # High availability
 
 Patroni
@@ -182,7 +195,7 @@ pgdog
 DEMO WARNING
 
 <!-- 
-If more scalability is needed - YugabyteDB, CockroachDB
+If more (write) scalability is needed - YugabyteDB, CockroachDB
 -->
 
 ---
@@ -201,7 +214,9 @@ If more scalability is needed - YugabyteDB, CockroachDB
 
 # Analytical queries, data lake
 
-<!--  -->
+<!--
+PostgreSQL is mainly for OLTP, but analytical queries are also possible
+-->
 
 ---
 
@@ -242,6 +257,7 @@ TDE can be self-induced-ransomware if key is lost - NB! All copies of the databa
 Use OS provided volume manager:
 * LVM
 * ZFS/BTRFS pools
+
 or just rely on your SAN/NAS
 
 <!--
@@ -286,7 +302,10 @@ DEMO WARNING
 
 ---
 
-# title
+# GoldenGate
+
+Logical replication is built in
+Debezium
 
 <!--  -->
 
