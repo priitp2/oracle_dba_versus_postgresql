@@ -107,6 +107,7 @@ Negative - often maintainer is a single person
 * pg_cron
 * pg_stat_monitor
 * pgcrypto
+* pgaudit
 * postgres_fdw, oracle_fdw, file_fdw
 * pl/python, pl/perl, pl/tcl
 
@@ -118,6 +119,7 @@ pg_partman - interval partitioning automation
 pg_cron - scheduling jobs
 pg_stat_monitor - detailed statement monitoring
 pgcrypto - cryptographic functions
+pgaudit - audit log
 postgres_fdw, oracle_fdw, file_fdw - foreign data wrappers
 pl/python, pl/perl - server programming languages
 -->
@@ -203,21 +205,69 @@ If more scalability is needed - YugabyteDB, CockroachDB
 
 ---
 
+# Auditing
+
+pgaudit
+
+> The goal of pgAudit is to provide PostgreSQL users with capability to produce audit logs often required to comply with government, financial, or ISO certifications.
+> An audit is an official inspection of an individual's or organization's accounts, typically by an independent body. The information gathered by pgAudit is properly called an audit trail or audit log.
+
+<!-- 
+Captures issued SQL statements and stores them in PostgreSQL log file
+-->
+
+---
+
 # TDE
 
-<!--  -->
+First, do you actually need/want TDE? Why?
+
+Use OS:
+* LUKS/cryptsetup
+
+Commercial offerings:
+* EnterpriseDB TDE
+* Cybertec TDE (part of PGEE)
+* pg_tde (requires Percona Server for PostgreSQL)
+
+<!--
+Protection against 
+TDE can be self-induced-ransomware if key is lost - NB! All copies of the database are encrypted with the same master key
+-->
 
 ---
 
 # ASM
 
-<!--  -->
+Use OS provided volume manager:
+* LVM
+* ZFS/BTRFS pools
+or just rely on your SAN/NAS
+
+<!--
+LVM does have online storage migration with built in pmove command
+-->
 
 ---
 
 # Compression
 
-<!--  -->
+BTRFS filesystem
+or just rely on your SAN/NAS
+
+Using BTRFS compression on PostgreSQL >= 16 requires
+```
+file_extend_method=write_zeros
+```
+
+<!--
+BTRFS works well with append only/mostly data, modifications incur some write penalties
+PG16 started writing relation files with posix_fallocate() that disables BTRFS compression
+
+Keep WAL on XFS/EXT4
+
+Our domain message (protobuf) persistence service compresses 3 times. No issues nor excessive CPU usage even at 4000+TPS
+-->
 
 ---
 
@@ -227,9 +277,10 @@ If more scalability is needed - YugabyteDB, CockroachDB
 
 ---
 
-# Monitoring
+# Monitoring / OEM
 
 pmm
+DEMO WARNING
 
 <!--  -->
 
@@ -247,9 +298,14 @@ pmm
 
 ---
 
-# title
+# Data REST APIs / ORDS
 
-<!--  -->
+PostgREST
+Supabase (commercial)
+
+<!--  
+Maybe Supabase is out-of-scope
+-->
 
 ---
 
