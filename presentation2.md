@@ -181,6 +181,9 @@ Protection modes:
 # High availability
 
 Patroni
+
+Provides Data Guard Broker orchestration functionality
+
 DEMO WARNING
 
 <!--  -->
@@ -311,7 +314,12 @@ Debezium
 
 ---
 
-# title
+# Array bind, bulk load
+
+There is no array api.
+
+* INSERT INTO t (a,b) VALUES (?,?),(?,?),(?,?);
+* COPY
 
 <!--  -->
 
