@@ -292,6 +292,7 @@ But what is the real-life use case for transactional DDL, since objects will get
 Data life cycle management: dropping old partition is faster than delete
 Old data can be archived or made available from secondary storage (hybrid partitioning with Parquet)
 Works really well with time series
+Hash partitioning in RAC
 
 But... ask do you actually need it. In Postgres there is less need.
 
