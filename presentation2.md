@@ -149,6 +149,7 @@ Don't be afraid to compile it yourself, it is quite easy - but be mindful of dep
 # Workload separation
 
 Use OS: SystemD, cgroups
+Keep installations small ans separated
 
 <!--  -->
 
@@ -162,6 +163,14 @@ Compile it yourself
 <!-- 
 PostgreSQL must be compiled already with the final software destination in mind
 -->
+
+---
+
+# Patching
+
+PostgreSQL is open source, so patches can be provided against the source code, which you compile yourself.
+
+<!-- Compiling PostgreSQL can be faster than running OPatch -->
 
 ---
 
@@ -357,6 +366,18 @@ Maybe Supabase is out-of-scope
 A tough one to replace, but there are options
 Source: kagi.com. Haven't tried any of this
 -->
+
+---
+
+# No alternatives
+
+* dbms_redefinition
+
+---
+
+# Things you'll start loving
+
+* ISO standard SQL
 
 ---
 <!-- _class: topic -->
