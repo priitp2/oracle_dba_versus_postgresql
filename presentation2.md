@@ -185,13 +185,51 @@ If more scalability is needed - YugabyteDB, CockroachDB
 
 ---
 
-# title
+# Partitioning
 
 <!--  -->
 
 ---
 
-# title
+# Parallelism
+
+<!--  -->
+
+---
+
+# Analytical queries, data lake
+
+<!--  -->
+
+---
+
+# TDE
+
+<!--  -->
+
+---
+
+# ASM
+
+<!--  -->
+
+---
+
+# Compression
+
+<!--  -->
+
+---
+
+# Tracing
+
+<!--  -->
+
+---
+
+# Monitoring
+
+pmm
 
 <!--  -->
 
