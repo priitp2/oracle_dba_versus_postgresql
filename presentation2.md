@@ -208,6 +208,9 @@ DEMO WARNING
 
 <!-- 
 If more (write) scalability is needed - YugabyteDB, CockroachDB
+
+pgdog is Ilmar's personal favourite. Eventual consistency and stale reads from replicas have generated strong opipions in our team and development organization.
+
 -->
 
 ---
