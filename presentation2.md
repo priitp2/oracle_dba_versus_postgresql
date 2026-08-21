@@ -372,12 +372,14 @@ Source: kagi.com. Haven't tried any of this
 # No alternatives
 
 * dbms_redefinition
+* Flashback query
 
 ---
 
 # Things you'll start loving
 
 * ISO standard SQL
+* Reliable major version release dates
 
 ---
 <!-- _class: topic -->
