@@ -176,14 +176,21 @@ PostgreSQL is open source, so patches can be provided against the source code, w
 
 # Data Protection
 
-standby is built in
-sync also
+Physical standby is built in
 
-Protection modes:
-* SYNC
-* FAST-SYNC
-* ASYNC
-* also wait for apply
+### Protection modes
+
+synchronous_commit | local durable commit | FAST-SYNC | SYNC | standby query consistency 
+-- | -- | -- | -- | --
+remote_apply | + | + | + | +
+on | + | + | + | 
+remote_write | + | + | + | 
+local | + |  |  | 
+off |  |  |  | 
+
+<!--
+Data Guard equivalent, for Broker functionality need Patroni in addition
+-->
 
 ---
 
@@ -310,7 +317,7 @@ Our domain message (protobuf) persistence service compresses 3 times. No issues 
 
 # Monitoring / OEM
 
-pmm
+[Perconaq Monitoring and Management](https://www.percona.com/monitoring/)
 DEMO WARNING
 
 <!--  -->
