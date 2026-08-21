@@ -381,6 +381,13 @@ Source: kagi.com. Haven't tried any of this
 * ISO standard SQL
 * Reliable major version release dates
 
+<!--
+
+Long list of ISO/IEC 9075:2023 features that PostgreSQL does not support: https://www.postgresql.org/docs/current/unsupported-features-sql-standard.html
+
+and some of which Oracle *does* support, like polymorphic table functions
+
+-->
 ---
 <!-- _class: topic -->
 
