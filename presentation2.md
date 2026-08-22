@@ -176,7 +176,7 @@ PostgreSQL is open source, so patches can be provided against the source code, w
 
 # Data Protection
 
-Physical standby is built in
+Physical standby is built in and used for queries
 
 ### Protection modes
 
@@ -202,22 +202,68 @@ Provides Data Guard Broker orchestration functionality
 
 DEMO WARNING
 
-<!--  -->
+<!--
+It does not get on the way for queries
+-->
+
+---
+
+# Client discovery in high availability
+
+Connection string multiple hosts and target_attr_mode
+ETCD can be used for service discovery
+pgdog
 
 ---
 
 # Scalability
 
+Avoid "a lot of connections"
+* Each client connection is a dedicated OS process
+* max_connections used to size memory arrays
+* idle connections aren't free
+* connection storms are dreadful
+
+Poolers
+* pgBouncer
+* pgDog
+* Odyssey (⚠️ Yandex owned)
+
+<!-- 
+PostgreSQL does not like "a lot of connections" - just like Oracle. Reduce heavily, or use a pooler.
+-->
+
+---
+
+# Horizontal scalability
+
 One writer, many readers
 Be mindful of "eventual consistency"
-pgdog
-DEMO WARNING
+* synchronous_commit can be set to remote_apply
 
 <!-- 
 If more (write) scalability is needed - YugabyteDB, CockroachDB
 
-pgdog is Ilmar's personal favourite. Eventual consistency and stale reads from replicas have generated strong opipions in our team and development organization.
+Avoid pgPool-II at any cost
+-->
 
+---
+
+# pgDog
+
+Modern connection pooler/proxy/load balancer
+Written in Rust, very fast
+DEMO WARNING
+
+add image here how it sits between app and database
+
+<!-- 
+Tries to solve PostgreSQL scalability problems - pooling, load balancing, sharding.
+Very actively in development, easy to request new features.
+
+Very fast, almost comparable to pgBouncer, but with vastly more features.
+
+pgdog is Ilmar's personal favourite. Eventual consistency and stale reads from replicas have generated strong opipions in our team and development organization.
 -->
 
 ---
@@ -228,9 +274,41 @@ pgdog is Ilmar's personal favourite. Eventual consistency and stale reads from r
 
 ---
 
-# Parallelism
+# Partitioning: Global indexes
+
+🤷‍♂️
+⁴⁰⁴
 
 <!--  -->
+
+---
+
+# Parallelism
+
+Optimizer decides to add GATHER / GATHER MERGE step
+
+Operations that can be done in parallel:
+* sequential scan, bitmap heap scan, index scan, index-only scan
+* nested loop join, merge join, hash join
+* aggregation
+* union all
+
+<!--
+some parameters:
+max_parallel_workers_per_gather / max_parallel_workers
+also parallel startup costs etc
+
+Writing or locking data disables parallelism
+-->
+
+---
+
+# Hints
+
+Frowned upon
+
+pg_hint_plan
+* very limited operations supported
 
 ---
 
@@ -251,6 +329,24 @@ pgaudit
 
 <!-- 
 Captures issued SQL statements and stores them in PostgreSQL log file
+-->
+
+---
+
+# User authentication
+
+Profiles need extensions
+
+Kerberos, TLS, OAuth, LDAP
+
+Centrally Managed Users:
+* pg_ident
+
+<!-- 
+OAuth is new and quite basic yet
+
+For us:
+mTLS and pg_ident maps user CN in certificate into shared database account
 -->
 
 ---
@@ -333,14 +429,20 @@ Debezium
 
 ---
 
-# Array bind, bulk load
+# Bulk bind DML
 
-There is no array api.
+
+Priit can you add something?
 
 * INSERT INTO t (a,b) VALUES (?,?),(?,?),(?,?);
 * COPY
 
-<!--  -->
+<!--
+In Oracle you can do stmt.setExecuteBatch(rows); to bind a bulk of rows and send in the same network roundtrip
+or python executeMany()
+In PostgreSQL it seems to be not the case
+COPY is designed for bulk data loading
+-->
 
 ---
 
@@ -388,7 +490,7 @@ Source: kagi.com. Haven't tried any of this
 
 # Things you'll start loving
 
-* ISO standard SQL
+* ISO standard SQL (almost)
 * Reliable major version release dates
 
 <!--
@@ -398,6 +500,41 @@ Long list of ISO/IEC 9075:2023 features that PostgreSQL does not support: https:
 and some of which Oracle *does* support, like polymorphic table functions
 
 -->
+---
+
+<!-- _class: columns -->
+<div>
+PostgreSQL major version release dates
+
+Version | Release
+-- | --
+18 | 2025-09-25
+17 | 2024-09-26
+16 | 2023-09-14
+15 | 2022-10-13
+14 | 2021-09-31
+13 | 2020-09-24
+
+Yearly releases dating back to 1998/1999
+</div>
+<div>
+Oracle major version release dates
+
+Version | First promise | Actual release
+-- | -- | --
+18c | 2018-07 | 2018-07-23
+19c | 1H CY2019 | 2019-04
+20c | NULL | NULL
+21c | 1H CY2021 | 2021-08-13
+22c | NULL | NULL
+23c | 1H CY2024 | 2026-01-27
+</div>
+
+<!--
+In July 2017 Oracle moved to a new release model promising "A new major database release every year"
+on-prem releases only
+-->
+
 ---
 <!-- _class: topic -->
 
