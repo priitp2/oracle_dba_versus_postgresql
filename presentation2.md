@@ -619,8 +619,6 @@ on-prem releases only
 
 ---
 
----
-
 # Migrating to PostgreSQL (I)
 
 Coding agents have solved problem with code changes
@@ -660,11 +658,17 @@ Complications:
 Strategies for downtime reduction:
 * Streaming to reduce the time to synchronise the data
 * "Dual writes": writing to two data stores in the app
+    In theory, writes to two data stores can eliminate the downtime
 
-In theory, writes to two data stores can eliminate the downtime
+<!--
 
+Streaming: Debezium works quite well
+
+Corner case with "dual writes" and updates: some downtime might still be needed
+-->
 ---
 
 # Migrating to PostgreSQL (VI)
 
 Conclusion: automation and downtime reduction involve high amount of engineering
+Who will pay for it?
