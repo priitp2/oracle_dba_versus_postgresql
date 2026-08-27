@@ -70,6 +70,10 @@ In this presentation adressing some issue that Oracle professionals might face w
 
 ---
 
+![bg contain](img/stonebraker_says_things.png)
+
+---
+
 # A collection of tools
 
 It is NOT just PostgreSQL, you need a large toolbox
