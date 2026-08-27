@@ -619,30 +619,52 @@ on-prem releases only
 
 ---
 
-# Migrating the data
+---
 
-extracting data from oracle be hard
+# Migrating to PostgreSQL (I)
 
-Debezium
-* Logminer - 🐌 slowww
-* OLR
-* and if you have the license X-Streams (this is what we do)
+Coding agents have solved problem with code changes
+Most of the code changes are mechanical, rules based
+Coding agents need extra pairs of underpants
 
 ---
 
-# Application code migration with AI
+# Migrating to PostgreSQL (II)
+
+Conceptually simple:
+* Create the PostgreSQL database
+* Shut down the old app
+* Copy over the data
+* Deploy new version of the app
+* Profit!
 
 ---
 
-# It's not all so rosy
+# Migrating to PostgreSQL (III)
 
-It will break eventually if your usage explodes
-... but that is a good problem to have
-
-https://www.cs.cmu.edu/~pavlo/blog/2023/04/the-part-of-postgresql-we-hate-the-most.html
-xid wraparound
-
-<!-- 
--->
+Complications:
+* Microservices: hundreds of services to migrate
+* Microservices: migration process needs to be automated
 
 ---
+
+# Migrating to PostgreSQL (IV)
+
+Complications:
+* Downtime: what if you can't take extended downtime?
+
+---
+
+# Migrating to PostgreSQL (V)
+
+Strategies for downtime reduction:
+* Streaming to reduce the time to synchronise the data
+* "Dual writes": writing to two data stores in the app
+
+In theory, writes to two data stores can eliminate the downtime
+
+---
+
+# Migrating to PostgreSQL (VI)
+
+Conclusion: automation and downtime reduction involve high amount of engineering
