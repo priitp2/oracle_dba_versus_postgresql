@@ -72,6 +72,11 @@ In this presentation adressing some issue that Oracle professionals might face w
 
 ![bg contain](img/stonebraker_says_things.png)
 
+<!--
+
+"We have to thank Oracle for [PostgreSQL's popularity] because when they bought MySQL, everybody was afraid that they were going to dominate where MySQL went to, and that was the beginning of the PostgreSQL ascendancy," Stonebraker said.
+
+-->
 ---
 
 # A collection of tools
