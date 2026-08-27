@@ -185,7 +185,12 @@ development containers as well. So after some pluggins and pgbouncer...
 Use OS: SystemD, cgroups
 Keep installations small ans separated
 
-<!--  -->
+<!--
+
+Cloud-native deployment: one PostgreSQL server, one database, one application
+
+Lack of workload isolation or resource anager makes it very hard to do other deployment models
+ -->
 
 ---
 
