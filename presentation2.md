@@ -188,7 +188,7 @@ development containers as well. So after some pluggins and pgbouncer...
 # Workload separation
 
 Use OS: SystemD, cgroups
-Keep installations small ans separated
+Keep installations small and separated
 
 <!--
 
