@@ -642,6 +642,7 @@ on-prem releases only
 
 * XID wraparound
 * Monitoring not so great
+* MVCC bloat on high update rate
 
 * collation not an issue anymore
 
