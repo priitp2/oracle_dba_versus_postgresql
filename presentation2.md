@@ -141,6 +141,8 @@ Linux distributions often come with built in PostgreSQL, Ubuntu also has nice up
 Don't be afraid to compile it yourself, it is quite easy - but be mindful of dependencies, it is linked dynamically
 -->
 
+---
+
 # Getting started with PostgreSQL, as a developer
 
 All starts and ends with Docker
