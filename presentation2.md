@@ -315,9 +315,37 @@ DEMO WARNING
 
 ---
 
-# Partitioning
+---
 
-<!--  -->
+# Partitioning for OLTP (I)
+
+Data life cycle management: dropping old partition is faster than delete
+Old data can be archived or made available from secondary storage (hybrid partitioning with Parquet)
+Works really well with time series
+Hash partitioning in RAC
+
+But... ask do you actually need it. In Postgres there is less need.
+
+---
+
+# Partitioning for OLTP (II)
+
+Downside: most of the queries do not benefit from partition pruning
+
+<!--
+For example: show me my last 10 transactions
+-->
+---
+
+![bg contain](img/partitioning_nopart.png)
+
+---
+
+![bg contain](img/partitioning_local.png)
+
+---
+
+![bg contain](img/partitioning_global.png)
 
 ---
 
