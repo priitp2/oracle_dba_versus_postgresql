@@ -70,6 +70,19 @@ In this presentation adressing some issue that Oracle professionals might face w
 
 ---
 
+# PostgreSQL
+
+* Not controlled by any vendor *
+* Open source at its absolute best *
+
+* https://www.theregister.com/databases/2026/08/19/postgres-pioneer-credits-oracle-with-helping-his-database-take-over-the-world/5289087
+
+<!-- 
+Controlled by 20-30 "very smart super programmers"; Core team 7 (4xUSA, Germany, Sweden, UK)
+-->
+
+---
+
 # A collection of tools
 
 It is NOT just PostgreSQL, you need a large toolbox
@@ -534,6 +547,16 @@ Version | First promise | Actual release
 In July 2017 Oracle moved to a new release model promising "A new major database release every year"
 on-prem releases only
 -->
+
+---
+<!-- _class: topic -->
+
+# Things you hate
+
+* XID wraparound
+* Monitoring not so great
+
+* collation not an issue anymore
 
 ---
 <!-- _class: topic -->
