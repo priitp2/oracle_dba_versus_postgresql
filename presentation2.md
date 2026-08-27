@@ -636,7 +636,6 @@ on-prem releases only
 -->
 
 ---
-<!-- _class: topic -->
 
 # Things you hate
 
