@@ -292,9 +292,11 @@ Avoid pgPool-II at any cost
 
 Modern connection pooler/proxy/load balancer
 Written in Rust, very fast
-DEMO WARNING
 
-add image here how it sits between app and database
+---
+
+![bg contain](img/pgdog.png)
+
 
 <!-- 
 Tries to solve PostgreSQL scalability problems - pooling, load balancing, sharding.
@@ -304,6 +306,12 @@ Very fast, almost comparable to pgBouncer, but with vastly more features.
 
 pgdog is Ilmar's personal favourite. Eventual consistency and stale reads from replicas have generated strong opipions in our team and development organization.
 -->
+
+---
+
+# pgDog
+
+DEMO WARNING
 
 ---
 
