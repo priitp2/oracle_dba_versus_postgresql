@@ -70,6 +70,18 @@ In this presentation adressing some issue that Oracle professionals might face w
 
 ---
 
+![bg contain](img/stonebraker_says_things.png)
+
+<!--
+
+"We have to thank Oracle for [PostgreSQL's popularity] because when they bought MySQL, everybody was afraid that they were going to dominate where MySQL went to, and that was the beginning of the PostgreSQL ascendancy," Stonebraker said.
+
+Ludovico Caldara passionately disagreed, pointing out PostgreSQL rise correlates well with AWS popularity.
+
+-->
+
+---
+
 # PostgreSQL
 
 * Not controlled by any vendor *
@@ -151,6 +163,36 @@ Don't be afraid to compile it yourself, it is quite easy - but be mindful of dep
 -->
 
 ---
+
+# Getting started with PostgreSQL, as a developer
+
+All starts and ends with Docker
+
+<!--
+While running databases in k8s haven't been popular in our company, containerized environments are
+essential for swd development these days. Testcontainers make possible to run the integration tests in your laptop,
+what not to like?!
+-->
+
+---
+
+![bg contain](img/docker0.png)
+
+<!--
+Size matters: smaller containers are easier to user. For example, in case of testcontainers, smaller image makes
+the tests run faster. But there's a catch.
+-->
+
+---
+
+![bg contain](img/docker1.png)
+
+<!--
+If plugins used for daily life change database behavior in some way, then these plugins must be added to the
+development containers as well. So after some pluggins and pgbouncer...
+-->
+
+---
 <!-- _class: topic -->
 
 # Lets talk features
@@ -162,9 +204,14 @@ Don't be afraid to compile it yourself, it is quite easy - but be mindful of dep
 # Workload separation
 
 Use OS: SystemD, cgroups
-Keep installations small ans separated
+Keep installations small and separated
 
-<!--  -->
+<!--
+
+Cloud-native deployment: one PostgreSQL server, one database, one application
+
+Lack of workload isolation or resource anager makes it very hard to do other deployment models
+ -->
 
 ---
 
@@ -266,9 +313,11 @@ Avoid pgPool-II at any cost
 
 Modern connection pooler/proxy/load balancer
 Written in Rust, very fast
-DEMO WARNING
 
-add image here how it sits between app and database
+---
+
+![bg contain](img/pgdog.png)
+
 
 <!-- 
 Tries to solve PostgreSQL scalability problems - pooling, load balancing, sharding.
@@ -281,9 +330,41 @@ pgdog is Ilmar's personal favourite. Eventual consistency and stale reads from r
 
 ---
 
-# Partitioning
+# pgDog
 
-<!--  -->
+DEMO WARNING
+
+---
+
+# Partitioning for OLTP (I)
+
+Data life cycle management: dropping old partition is faster than delete
+Old data can be archived or made available from secondary storage (hybrid partitioning with Parquet)
+Works really well with time series
+Hash partitioning in RAC
+
+But... ask do you actually need it. In Postgres there is less need.
+
+---
+
+# Partitioning for OLTP (II)
+
+Downside: most of the queries do not benefit from partition pruning
+
+<!--
+For example: show me my last 10 transactions
+-->
+---
+
+![bg contain](img/partitioning_nopart.png)
+
+---
+
+![bg contain](img/partitioning_local.png)
+
+---
+
+![bg contain](img/partitioning_global.png)
 
 ---
 
@@ -567,30 +648,56 @@ on-prem releases only
 
 ---
 
-# Migrating the data
+# Migrating to PostgreSQL (I)
 
-extracting data from oracle be hard
-
-Debezium
-* Logminer - 🐌 slowww
-* OLR
-* and if you have the license X-Streams (this is what we do)
+Coding agents have solved problem with code changes
+Most of the code changes are mechanical, rules based
+Coding agents need extra pairs of underpants
 
 ---
 
-# Application code migration with AI
+# Migrating to PostgreSQL (II)
+
+Conceptually simple:
+* Create the PostgreSQL database
+* Shut down the old app
+* Copy over the data
+* Deploy new version of the app
+* Profit!
 
 ---
 
-# It's not all so rosy
+# Migrating to PostgreSQL (III)
 
-It will break eventually if your usage explodes
-... but that is a good problem to have
+Complications:
+* Microservices: hundreds of services to migrate
+* Microservices: migration process needs to be automated
 
-https://www.cs.cmu.edu/~pavlo/blog/2023/04/the-part-of-postgresql-we-hate-the-most.html
-xid wraparound
+---
 
-<!-- 
+# Migrating to PostgreSQL (IV)
+
+Complications:
+* Downtime: what if you can't take extended downtime?
+
+---
+
+# Migrating to PostgreSQL (V)
+
+Strategies for downtime reduction:
+* Streaming to reduce the time to synchronise the data
+* "Dual writes": writing to two data stores in the app
+    In theory, writes to two data stores can eliminate the downtime
+
+<!--
+
+Streaming: Debezium works quite well
+
+Corner case with "dual writes" and updates: some downtime might still be needed
 -->
-
 ---
+
+# Migrating to PostgreSQL (VI)
+
+Conclusion: automation and downtime reduction involve high amount of engineering
+Who will pay for it?
