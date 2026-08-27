@@ -206,6 +206,8 @@ development containers as well. So after some pluggins and pgbouncer...
 Use OS: SystemD, cgroups
 Keep installations small and separated
 
+example of systemd unit showing the limits
+
 <!--
 
 Cloud-native deployment: one PostgreSQL server, one database, one application
@@ -237,6 +239,7 @@ PostgreSQL is open source, so patches can be provided against the source code, w
 # Data Protection
 
 Physical standby is built in and used for queries
+page checksums now default
 
 ### Protection modes
 
@@ -257,6 +260,7 @@ Data Guard equivalent, for Broker functionality need Patroni in addition
 # High availability
 
 Patroni
+picture of patroni setup
 
 Provides Data Guard Broker orchestration functionality
 
@@ -273,6 +277,8 @@ It does not get on the way for queries
 Connection string multiple hosts and target_attr_mode
 ETCD can be used for service discovery
 pgdog
+
+example connection strings
 
 ---
 
