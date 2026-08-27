@@ -320,8 +320,6 @@ DEMO WARNING
 
 ---
 
----
-
 # Partitioning for OLTP (I)
 
 Data life cycle management: dropping old partition is faster than delete
