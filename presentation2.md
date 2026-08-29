@@ -349,7 +349,9 @@ Old data can be archived or made available from secondary storage (hybrid partit
 Works really well with time series
 Hash partitioning in RAC
 
+<!--
 But... ask do you actually need it. In Postgres there is less need.
+-->
 
 ---
 
