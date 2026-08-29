@@ -350,6 +350,7 @@ Works really well with time series
 Hash partitioning in RAC
 
 <!--
+Knee-jerk reaction is to do similar things in PostgreSQL as well.
 But... ask do you actually need it. In Postgres there is less need.
 -->
 
@@ -378,8 +379,8 @@ For example: show me my last 10 transactions
 
 # Partitioning: Global indexes
 
-🤷‍♂️
-⁴⁰⁴
+In PostgreSQL:
+*🤷‍♂️
 
 <!--  -->
 
@@ -662,16 +663,20 @@ Coding agents have solved problem with code changes
 Most of the code changes are mechanical, rules based
 Coding agents need extra pairs of underpants
 
+<!--
+Instead of a frameworks that paper over the diffrences in SQL details, you can instruct your agents to change the code.
+Testcontainers make testing the code changes easy. And you can run integration tests in your laptop.
+-->
 ---
 
 # Migrating to PostgreSQL (II)
 
-Conceptually simple:
-* Create the PostgreSQL database
-* Shut down the old app
-* Copy over the data
-* Deploy new version of the app
-* Profit!
+Conceptually simple, once you have a PostgreSQL version of the app:
+1. Create the PostgreSQL database
+2. Shut down the old app
+3. Copy over the data
+4. Deploy new version of the app
+5. Profit!
 
 ---
 
@@ -688,6 +693,9 @@ Complications:
 Complications:
 * Downtime: what if you can't take extended downtime?
 
+<!--
+As with downtime in general, adding a nine will make life exponentially more complicated.
+-->
 ---
 
 # Migrating to PostgreSQL (V)
