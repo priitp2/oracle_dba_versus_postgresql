@@ -717,3 +717,7 @@ Corner case with "dual writes" and updates: some downtime might still be needed
 
 Conclusion: automation and downtime reduction involve high amount of engineering
 Who will pay for it?
+
+---
+
+# Tnx! Bye!
