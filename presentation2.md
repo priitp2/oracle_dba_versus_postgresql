@@ -11,10 +11,20 @@ style: |
     gap: 1rem;
   }
   section.topic {
-    background-color: #ccc;
-    font-weight: bold;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    background: #f8f8f8;
+    color: #222;
+
+    font-size: 2.8rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-align: center;
+
+    border-left: 0.3rem solid #555;
+  }
 ---
 
 # Oracle DBA discovers PostgreSQL
@@ -54,6 +64,12 @@ Blog: https://ilmarkerm.eu,
 
 ---
 
+<!-- _class: topic -->
+
+# What is PostgreSQL?
+
+---
+
 # The rise of PostgreSQL
 
 "The only database that exists today"
@@ -87,10 +103,12 @@ Ludovico Caldara passionately disagreed, pointing out PostgreSQL rise correlates
 * Not controlled by any vendor *
 * Open source at its absolute best *
 
-* https://www.theregister.com/databases/2026/08/19/postgres-pioneer-credits-oracle-with-helping-his-database-take-over-the-world/5289087
+https://www.theregister.com/databases/2026/08/19/postgres-pioneer-credits-oracle-with-helping-his-database-take-over-the-world/5289087
 
 <!-- 
 Controlled by 20-30 "very smart super programmers"; Core team 7 (4xUSA, Germany, Sweden, UK)
+
+Although big tech has its own forks, they also contribute to the core. Microsoft and AWS - yes; Google, Oracle - no
 -->
 
 ---
@@ -101,10 +119,18 @@ It is NOT just PostgreSQL, you need a large toolbox
 * Extensions
 * External software
 * And the standard OS tools
+* Other OS libraries
 
 <!--
 PostgreSQL is just the basic core, you need extensions, you need external software
 High Availability, backup
+-->
+
+---
+
+![bg contain](img/collection_of_tools.png)
+
+<!--
 -->
 
 ---
@@ -151,6 +177,13 @@ pl/python, pl/perl - server programming languages
 
 ---
 
+![bg contain](img/extensions.png)
+
+<!--
+-->
+
+---
+
 # Installation
 
 * Binary packages RPM/DEB/...
@@ -160,6 +193,24 @@ pl/python, pl/perl - server programming languages
 <!-- 
 Linux distributions often come with built in PostgreSQL, Ubuntu also has nice upgrade automation.
 Don't be afraid to compile it yourself, it is quite easy - but be mindful of dependencies, it is linked dynamically
+-->
+
+---
+
+```
+./configure --prefix=/usr/pg-software/pg-18-18061 --enable-rpath\
+  --with-libnuma --with-ssl=openssl --with-icu --with-liburing \
+  --with-lz4 --with-uuid=e2fs --with-libcurl --with-libxml --with-zstd
+make world-bin && make check && make install-world-bin
+
+real    5m24.540s
+user    3m50.012s
+sys     1m17.950s
+```
+
+<!-- 
+2cpu_8G
+Does include contrib extensions (pgcrypto, ...), does not include external extensions (pgvector, pgaudit, ...)
 -->
 
 ---
@@ -213,7 +264,48 @@ example of systemd unit showing the limits
 Cloud-native deployment: one PostgreSQL server, one database, one application
 
 Lack of workload isolation or resource anager makes it very hard to do other deployment models
- -->
+-->
+
+---
+
+```
+[Unit]
+After=network-online.target
+Requires=network-online.target
+RequiresMountsFor=/var/lib/pgsql /var/log/pgsql
+
+[Service]
+Type=simple
+User=postgres
+Group=postgres
+
+# Resource limits
+CPUQuota=600%
+CPUQuotaPeriodSec=10ms
+
+WorkingDirectory=/var/lib/pgsql
+Environment=TZ=UTC
+
+# Start the patroni process
+ExecStart=/var/lib/pgsql/patroni_venv07/bin/patroni patroni.yml
+
+# Send HUP to reload from patroni.yml
+ExecReload=/bin/kill -s HUP $MAINPID
+
+# First execute switchover and then KillMode is activated
+# Only kill the patroni process, not it's children, so it will gracefully stop postgres
+ExecStop=/var/lib/pgsql/switchover_if_primary.py patroni.yml --quiet
+KillMode=process
+
+# Give a reasonable amount of time for the server to start up/shut down
+TimeoutSec=360
+
+# Restart the service if it crashed
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
 
 ---
 
@@ -221,6 +313,13 @@ Lack of workload isolation or resource anager makes it very hard to do other dep
 
 No tarball installation, PostgreSQL is not relocatable
 Compile it yourself
+
+```
+/var/lib/pgsql/software/pg-18-1803-1
+/var/lib/pgsql/software/pg-18-1804-1
+/var/lib/pgsql/software/pg-18-1804-2
+/var/lib/pgsql/software/pg-18-1806-1
+```
 
 <!-- 
 PostgreSQL must be compiled already with the final software destination in mind
@@ -241,6 +340,12 @@ PostgreSQL is open source, so patches can be provided against the source code, w
 Physical standby is built in and used for queries
 page checksums now default
 
+<!--
+Data Guard equivalent, for Broker functionality need Patroni in addition
+-->
+
+---
+
 ### Protection modes
 
 synchronous_commit | local durable commit | FAST-SYNC | SYNC | standby query consistency 
@@ -251,8 +356,10 @@ remote_write | + | + | + |
 local | + |  |  | 
 off |  |  |  | 
 
-<!--
-Data Guard equivalent, for Broker functionality need Patroni in addition
+<!-- 
+FAST-SYNC and SYNC are Oracle Data Guard terminology
+FAST-SYNC - WAL record is written to remote instance memory
+SYNC - WAL record is written to remote instance memory and synced to disk
 -->
 
 ---
@@ -260,14 +367,27 @@ Data Guard equivalent, for Broker functionality need Patroni in addition
 # High availability
 
 Patroni
-picture of patroni setup
-
-Provides Data Guard Broker orchestration functionality
+* Swichover/failover capabilities
+* Managing PostgreSQL configuration
+* Creating database, creating replicas
+* Requires external configuration store (etcd)
 
 DEMO WARNING
 
 <!--
+Provides Data Guard Broker orchestration functionality
 It does not get on the way for queries
+So easy
+REST API for all actions
+-->
+
+---
+
+![bg contain](img/patroni.png)
+
+<!--
+If plugins used for daily life change database behavior in some way, then these plugins must be added to the
+development containers as well. So after some pluggins and pgbouncer...
 -->
 
 ---
