@@ -912,6 +912,7 @@ Strategies for downtime reduction:
 <!--
 
 Streaming: Debezium works quite well
+How to get the changes from Oracle? Logminer? X-Stream? OLR?
 
 Corner case with "dual writes" and updates: some downtime might still be needed
 -->
