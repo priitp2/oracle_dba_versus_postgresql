@@ -379,6 +379,7 @@ Provides Data Guard Broker orchestration functionality
 It does not get on the way for queries
 So easy
 REST API for all actions
+etcd can be shared between multiple clusters
 -->
 
 ---
@@ -394,11 +395,39 @@ development containers as well. So after some pluggins and pgbouncer...
 
 # Client discovery in high availability
 
-Connection string multiple hosts and target_attr_mode
-ETCD can be used for service discovery
-pgdog
+Use the full power of the connection string
+pgDog
+❌❌❌ Do not use haproxy
+ETCD can also be used for service discovery
 
-example connection strings
+<!--
+How shall a client find, where the leader instance is currently running?
+-->
+
+---
+
+### libpq
+
+```
+postgresql://pghost1.example.com,pghost2.example.com/dbname?target_session_attrs=read-write&connect-timeout=2
+```
+
+target_session_attrs
+* any
+* read-write / primary
+* read-only / standby
+* prefer-standby
+
+### JDBC
+
+```
+jdbc:postgresql://pghost1.example.com,pghost2.example.com/dbname?targetServerType=primary&connectTimeout=2
+```
+
+<!-- 
+Example connection strings
+libpq syntax works also for Go driver
+-->
 
 ---
 
@@ -412,11 +441,13 @@ Avoid "a lot of connections"
 
 Poolers
 * pgBouncer
-* pgDog
+* pgDog 🐕️ ✨
 * Odyssey (⚠️ Yandex owned)
 
 <!-- 
 PostgreSQL does not like "a lot of connections" - just like Oracle. Reduce heavily, or use a pooler.
+pgBouncer - old and trusted workhorse
+pgDog - new and shiny
 -->
 
 ---
@@ -438,20 +469,49 @@ Avoid pgPool-II at any cost
 # pgDog
 
 Modern connection pooler/proxy/load balancer
-Written in Rust, very fast
+Thrives towards no application changes
 
----
-
-![bg contain](img/pgdog.png)
-
+Modes
+* Transaction
+* Statement
+* Session
 
 <!-- 
+Written in Rust, very fast
+
+Transaction mode - few server connections can be shared between thousands? of front-end connections
+Session mode - One to one mapping between client and server connection, all features supported, on client disconnect server connection remains, lazy connecting of servers (on first query)
+
 Tries to solve PostgreSQL scalability problems - pooling, load balancing, sharding.
 Very actively in development, easy to request new features.
 
 Very fast, almost comparable to pgBouncer, but with vastly more features.
 
 pgdog is Ilmar's personal favourite. Eventual consistency and stale reads from replicas have generated strong opipions in our team and development organization.
+-->
+
+---
+
+# pgDog features
+
+* Load balancing - read/write splitting
+* Automatic session pinning (temp tables, advisory locks)
+* pub/sub - listen/notify
+* SET commands
+* Prepared statements
+* Automatic sharding
+
+<!--
+Load balancer supports also manual routing
+Not all database features - like temp tables, advisory locks, pub/sub are connection dependent, pgDog detects and automatically pins
+-->
+
+---
+
+![bg contain](img/pgdog2.png)
+
+
+<!-- 
 -->
 
 ---
