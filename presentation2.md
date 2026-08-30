@@ -590,15 +590,41 @@ Writing or locking data disables parallelism
 
 Frowned upon
 
-pg_hint_plan
-* very limited operations supported
+pg_hint_plan extension
+
+<!-- 
+very limited operations supported, but important ones are there
+Scan method
+Disable indexes
+Join method
+Join order
+Behavioural control on join (memoize)
+Cardinality correction
+Parallel query
+Parameter changes for planner
+-->
 
 ---
 
 # Analytical queries, data lake
 
+Extensions
+* pg_duckdb (DuckDB)
+* pg_lake (Snowflake)
+
+Analytics oriented forks:
+* Greenplum
+* Vertica
+* Redshift
+
 <!--
 PostgreSQL is mainly for OLTP, but analytical queries are also possible
+There must be more analytics forks than mentioned
+
+pg_dumpdb is DuckDB engine in PostgreSQL process, analytical queries can be run on DuckDB engine, accessing PostgreSQL data.
+pg_duckdb is intended to be used on replica node. Can query CSV, parquet/iceberg... also
+
+pg_lake allows querying Iceberg tables
 -->
 
 ---
@@ -732,10 +758,8 @@ COPY is designed for bulk data loading
 # Data REST APIs / ORDS
 
 PostgREST
-Supabase (commercial)
 
 <!--  
-Maybe Supabase is out-of-scope
 -->
 
 ---
