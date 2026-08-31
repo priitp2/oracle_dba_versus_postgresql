@@ -222,7 +222,10 @@ development containers as well. So after some pluggins and pgbouncer...
 
 # Lets talk features
 
-<!-- In this section can go into implementing some Oracle world features in PG -->
+<!--
+In this section can go into implementing some Oracle world features in PG
+From the perspective of Oracle dinosaur exploring PostgreSQL offerings
+-->
 
 ---
 
@@ -533,29 +536,10 @@ For example: show me my last 10 transactions
 # Partitioning: Global indexes
 
 In PostgreSQL:
-*🤷‍♂️
+<style scoped>div{font-size:130px;}</style>
+<div>🤷‍♂️</div>
 
 <!--  -->
-
----
-
-# Parallelism
-
-Optimizer decides to add GATHER / GATHER MERGE step
-
-Operations that can be done in parallel:
-- sequential scan, bitmap heap scan, index scan, index-only scan
-- nested loop join, merge join, hash join
-- aggregation
-- union all
-
-<!--
-some parameters:
-max_parallel_workers_per_gather / max_parallel_workers
-also parallel startup costs etc
-
-Writing or locking data disables parallelism
--->
 
 ---
 
@@ -783,13 +767,16 @@ No AS OF timestamp queries. Is there a plugin for flashback data archve? "period
 
 # Things you'll start loving
 
-- ISO standard SQL (almost)
-- Reliable major version release dates
-- Having the source
-- Extreme extensibility, custom data types, custom operators
-- Transactional DDL (*)
+- FREEDOM to do anything!
+* ISO standard SQL (almost)
+* Reliable major version release dates
+* Having the source
+* Extreme extensibility, custom data types, custom operators
+* Transactional DDL (*)
 
 <!--
+FREEDOM - no be constrained to counting CPUs, what options you can or cannot use. Juse use it any way you like.
+
 Having the source means you can ask your LLM questions about it and generate patches. (pretty much what Oracle support is nowadays anyway)
 
 Long list of ISO/IEC 9075:2023 features that PostgreSQL does not support: https://www.postgresql.org/docs/current/unsupported-features-sql-standard.html
