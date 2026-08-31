@@ -77,7 +77,7 @@ Blog: https://ilmarkerm.eu,
 "Just use Postgres until it breaks." *
 "You should always default to Postgres until the constraints prove you wrong." *
 
-* https://topicpartition.io/blog/postgres-pubsub-queue-benchmarks
+https://topicpartition.io/blog/postgres-pubsub-queue-benchmarks
 
 <!--
 Everything in the database world today is PG related and this is the only database modern devs think exists
@@ -728,6 +728,18 @@ open source
 
 ---
 
+# Wait interface
+
+pg_stat_activity
+pg_wait_events - 274 in 18.6
+
+<!--
+TODO
+Being actively improved upon, PG18 especially
+-->
+
+---
+
 # Monitoring / OEM
 
 [Perconaq Monitoring and Management](https://www.percona.com/monitoring/)
@@ -805,12 +817,10 @@ Source: kagi.com. Haven't tried any of this
 
 <!--
 MVCC dead tuples are not usable for flashback query
+No AS OF timestamp queries. Is there a plugin for flashback data archve? "periods" extension seems dead, not build anymore and max pg15
 
 -->
 
-<!-- 
-No AS OF timestamp queries. Is there a plugin for flashback data archve?
--->
 ---
 
 # Things you'll start loving
