@@ -795,6 +795,9 @@ Source: kagi.com. Haven't tried any of this
 * dbms_redefinition
 * Flashback query
 
+<!-- 
+No AS OF timestamp queries. Is there a plugin for flashback data archve?
+-->
 ---
 
 # Things you'll start loving
