@@ -686,15 +686,15 @@ open source
 
 # Wait interface
 
-pg_stat_activity
-pg_wait_events - 274 events in 18.6
+VIEW pg_stat_activity
+VIEW pg_wait_events - 274 events in 18.6
+EXTENSION pg_wait_sampling
 
 <!--
 TODO
 Being actively improved upon, PG18 especially
 
 pg_stat_activity is v$session equivalent.
-no historical state like ASH
 -->
 
 ---
