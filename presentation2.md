@@ -180,6 +180,7 @@ pl/python, pl/perl - server programming languages
 ![bg contain](img/extensions.png)
 
 <!--
+Is there an extension that adds instrumentation?
 -->
 
 ---
