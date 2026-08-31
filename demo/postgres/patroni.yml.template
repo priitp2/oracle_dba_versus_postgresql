@@ -1,0 +1,75 @@
+scope: demo
+name: $PATRONIHOST
+
+restapi:
+    listen: 0.0.0.0:8080
+    connect_address: $PATRONIHOST:8080
+
+etcd3:
+    hosts: etcd1:2379,etcd2:2379,etcd3:2379
+
+bootstrap:
+    initdb:
+        - data-checksums
+        - wal-segsize: '16'
+        - locale: C.UTF-8
+        - locale-provider: builtin
+    dcs:
+        ttl: 30
+        retry_timeout: 10
+        loop_wait: 10
+        postgresql:
+            parameters:
+                hot_standby: 'on'
+                max_connections: 100
+                max_wal_senders: 10
+                max_replication_slots: 10
+                wal_keep_size: 512MB
+                wal_log_hints: 'on'
+            use_pg_rewind: true
+            use_slots: true
+        synchronous_mode: true
+        synchronous_node_count: 1
+
+postgresql:
+    authentication:
+        replication:
+            username: replication
+            password: demo123
+        rewind:
+            username: rewind
+            password: demo123
+        superuser:
+            username: postgres
+            password: demo123
+    bin_dir: /usr/pgsql-18/bin
+    connect_address: $PATRONIHOST:5432
+    data_dir: /var/lib/pgsql/data
+    listen: 0.0.0.0:5432
+    use_pg_rewind: true
+    use_unix_socket: true
+    parameters:
+        unix_socket_directories: /run/postgresql
+        shared_buffers: 64MB
+        timezone: UTC
+        password_encryption: scram-sha-256
+        synchronous_commit: remote_write
+        jit: off
+        track_io_timing: on
+        track_wal_io_timing: on
+        shared_preload_libraries: pg_stat_monitor,pg_wait_sampling
+        pg_stat_monitor.pgsm_bucket_time: '60s'
+        pg_stat_monitor.pgsm_max_buckets: 240
+        pg_stat_monitor.pgsm_histogram_buckets: 20
+    pg_hba:
+        - host all all 0.0.0.0/0 scram-sha-256
+        - host replication replication 0.0.0.0/0 scram-sha-256
+        - local all postgres peer
+        - local all pmm-agent peer
+        - local all all scram-sha-256
+
+tags:
+    clonefrom: true
+    noloadbalance: false
+    nosync: false
+    nofailover: false

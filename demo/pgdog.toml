@@ -1,0 +1,32 @@
+[general]
+host = "0.0.0.0"
+port = 6432
+pooler_mode = "transaction"
+auth_type = "scram"
+query_parser = "on"
+passthrough_auth = "enabled_plain"
+lsn_check_delay = 0
+lsn_check_interval = 2_000
+
+[admin]
+name = "admin"
+user = "admin"
+password = "demo123"
+
+[tcp]
+keepalive = true
+time = 60_000
+interval = 1_000
+retries = 3
+
+[[databases]]
+name = "postgres"
+host = "pg1"
+port = 5432
+role = "auto"
+
+[[databases]]
+name = "postgres"
+host = "pg2"
+port = 5432
+role = "auto"

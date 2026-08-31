@@ -1,0 +1,3 @@
+PGDATA=/var/lib/pgsql/data
+export PGDATA
+alias patronictl="/var/lib/pgsql/patroni01_venv/bin/patronictl -c /var/lib/pgsql/patroni.yml"
