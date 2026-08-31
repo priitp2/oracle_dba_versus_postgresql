@@ -100,8 +100,8 @@ Ludovico Caldara passionately disagreed, pointing out PostgreSQL rise correlates
 
 # PostgreSQL
 
-* Not controlled by any vendor *
-* Open source at its absolute best *
+- Not controlled by any vendor *
+- Open source at its absolute best *
 
 https://www.theregister.com/databases/2026/08/19/postgres-pioneer-credits-oracle-with-helping-his-database-take-over-the-world/5289087
 
@@ -116,10 +116,10 @@ Although big tech has its own forks, they also contribute to the core. Microsoft
 # A collection of tools
 
 It is NOT just PostgreSQL, you need a large toolbox
-* Extensions
-* External software
-* And the standard OS tools
-* Other OS libraries
+- Extensions
+- External software
+- And the standard OS tools
+- Other OS libraries
 
 <!--
 PostgreSQL is just the basic core, you need extensions, you need external software
@@ -150,33 +150,6 @@ Negative - often maintainer is a single person
 
 ---
 
-# Extensions
-
-* PostGIS
-* pgvector
-* pg_partman
-* pg_cron
-* pg_stat_monitor
-* pgcrypto
-* pgaudit
-* postgres_fdw, oracle_fdw, file_fdw
-* pl/python, pl/perl, pl/tcl
-
-<!--
-Some well-known extensions:
-PostGIS - GIS data types and functionality, like Oracle Spatial
-pgvector - vector data types and similarity search
-pg_partman - interval partitioning automation
-pg_cron - scheduling jobs
-pg_stat_monitor - detailed statement monitoring
-pgcrypto - cryptographic functions
-pgaudit - audit log
-postgres_fdw, oracle_fdw, file_fdw - foreign data wrappers
-pl/python, pl/perl - server programming languages
--->
-
----
-
 ![bg contain](img/extensions.png)
 
 <!--
@@ -187,9 +160,9 @@ Is there an extension that adds instrumentation?
 
 # Installation
 
-* Binary packages RPM/DEB/...
-* Installers for Windows, MacOS
-* The almighty source
+- Binary packages RPM/DEB/...
+- Installers for Windows, MacOS
+- The almighty source
 
 <!-- 
 Linux distributions often come with built in PostgreSQL, Ubuntu also has nice upgrade automation.
@@ -347,15 +320,15 @@ Data Guard equivalent, for Broker functionality need Patroni in addition
 
 ---
 
-### Protection modes
+### Commit protection modes
 
 synchronous_commit | local durable commit | FAST-SYNC | SYNC | standby query consistency 
 -- | -- | -- | -- | --
-remote_apply | + | + | + | +
-on | + | + | + | 
-remote_write | + | + | + | 
-local | + |  |  | 
-off |  |  |  | 
+**remote_apply** | ✅ | ✅ | ✅ | ✅
+**on** | ✅ | ✅ | ✅ | ❌
+**remote_write** | ✅ | ✅ | ❌ | ❌
+**local** | ✅ | ❌ | ❌ | ❌
+**off** | ❌ | ❌ | ❌ | ❌
 
 <!-- 
 FAST-SYNC and SYNC are Oracle Data Guard terminology
@@ -368,10 +341,10 @@ SYNC - WAL record is written to remote instance memory and synced to disk
 # High availability
 
 Patroni
-* Swichover/failover capabilities
-* Managing PostgreSQL configuration
-* Creating database, creating replicas
-* Requires external configuration store (etcd)
+- Swichover/failover capabilities
+- Managing PostgreSQL configuration
+- Creating database, creating replicas
+- Requires external configuration store (etcd)
 
 DEMO WARNING
 
@@ -414,10 +387,10 @@ postgresql://pghost1.example.com,pghost2.example.com/dbname?target_session_attrs
 ```
 
 target_session_attrs
-* any
-* read-write / primary
-* read-only / standby
-* prefer-standby
+- any
+- read-write / primary
+- read-only / standby
+- prefer-standby
 
 ### JDBC
 
@@ -435,15 +408,15 @@ libpq syntax works also for Go driver
 # Scalability
 
 Avoid "a lot of connections"
-* Each client connection is a dedicated OS process
-* max_connections used to size memory arrays
-* idle connections aren't free
-* connection storms are dreadful
+- Each client connection is a dedicated OS process
+- max_connections used to size memory arrays
+- idle connections aren't free
+- connection storms are dreadful
 
 Poolers
-* pgBouncer
-* pgDog 🐕️ ✨
-* Odyssey (⚠️ Yandex owned)
+- pgBouncer
+- pgDog 🐕️ ✨
+- Odyssey (⚠️ Yandex owned)
 
 <!-- 
 PostgreSQL does not like "a lot of connections" - just like Oracle. Reduce heavily, or use a pooler.
@@ -457,7 +430,7 @@ pgDog - new and shiny
 
 One writer, many readers
 Be mindful of "eventual consistency"
-* synchronous_commit can be set to remote_apply
+> synchronous_commit can be set to remote_apply
 
 <!-- 
 If more (write) scalability is needed - YugabyteDB, CockroachDB
@@ -473,9 +446,9 @@ Modern connection pooler/proxy/load balancer
 Thrives towards no application changes
 
 Modes
-* Transaction
-* Statement
-* Session
+- Transaction
+- Statement
+- Session
 
 <!-- 
 Written in Rust, very fast
@@ -495,12 +468,12 @@ pgdog is Ilmar's personal favourite. Eventual consistency and stale reads from r
 
 # pgDog features
 
-* Load balancing - read/write splitting
-* Automatic session pinning (temp tables, advisory locks)
-* pub/sub - listen/notify
-* SET commands
-* Prepared statements
-* Automatic sharding
+- Load balancing - read/write splitting
+- Automatic session pinning (temp tables, advisory locks)
+- pub/sub - listen/notify
+- SET commands
+- Prepared statements
+- Automatic sharding
 
 <!--
 Load balancer supports also manual routing
@@ -510,7 +483,6 @@ Not all database features - like temp tables, advisory locks, pub/sub are connec
 ---
 
 ![bg contain](img/pgdog2.png)
-
 
 <!-- 
 -->
@@ -572,10 +544,10 @@ In PostgreSQL:
 Optimizer decides to add GATHER / GATHER MERGE step
 
 Operations that can be done in parallel:
-* sequential scan, bitmap heap scan, index scan, index-only scan
-* nested loop join, merge join, hash join
-* aggregation
-* union all
+- sequential scan, bitmap heap scan, index scan, index-only scan
+- nested loop join, merge join, hash join
+- aggregation
+- union all
 
 <!--
 some parameters:
@@ -610,13 +582,13 @@ Parameter changes for planner
 # Analytical queries, data lake
 
 Extensions
-* pg_duckdb (DuckDB)
-* pg_lake (Snowflake)
+- pg_duckdb (DuckDB)
+- pg_lake (Snowflake)
 
 Analytics oriented forks:
-* Greenplum
-* Vertica
-* Redshift
+- Greenplum
+- Vertica
+- Redshift
 
 <!--
 PostgreSQL is mainly for OLTP, but analytical queries are also possible
@@ -645,12 +617,12 @@ Captures issued SQL statements and stores them in PostgreSQL log file
 
 # User authentication
 
-Profiles need extensions
+Profiles need extension
 
 Kerberos, TLS, OAuth, LDAP
 
 Centrally Managed Users:
-* pg_ident
+- pg_ident
 
 <!-- 
 OAuth is new and quite basic yet
@@ -666,12 +638,12 @@ mTLS and pg_ident maps user CN in certificate into shared database account
 First, do you actually need/want TDE? Why?
 
 Use OS:
-* LUKS/cryptsetup
+- LUKS/cryptsetup
 
 Commercial offerings:
-* EnterpriseDB TDE
-* Cybertec TDE (part of PGEE)
-* pg_tde (requires Percona Server for PostgreSQL)
+- EnterpriseDB TDE
+- Cybertec TDE (part of PGEE)
+- pg_tde (requires Percona Server for PostgreSQL)
 
 <!--
 Protection against 
@@ -683,8 +655,8 @@ TDE can be self-induced-ransomware if key is lost - NB! All copies of the databa
 # ASM
 
 Use OS provided volume manager:
-* LVM
-* ZFS/BTRFS pools
+- LVM
+- ZFS/BTRFS pools
 
 or just rely on your SAN/NAS
 
@@ -731,7 +703,7 @@ open source
 # Wait interface
 
 pg_stat_activity
-pg_wait_events - 274 in 18.6
+pg_wait_events - 274 events in 18.6
 
 <!--
 TODO
@@ -745,37 +717,20 @@ no historical state like ASH
 
 # Monitoring / OEM
 
-[Perconaq Monitoring and Management](https://www.percona.com/monitoring/)
+[Percona Monitoring and Management](https://www.percona.com/monitoring/)
 DEMO WARNING
 
 <!--  -->
 
 ---
 
-# Replication
+# Logical replication
 
-Logical (and physical) replication is built in
+Logical replication is built in
 Debezium
 GoldenGate supports PostgreSQL as well
 
 <!--  -->
-
----
-
-# Bulk bind DML
-
-
-Priit can you add something?
-
-* INSERT INTO t (a,b) VALUES (?,?),(?,?),(?,?);
-* COPY
-
-<!--
-In Oracle you can do stmt.setExecuteBatch(rows); to bind a bulk of rows and send in the same network roundtrip
-or python executeMany()
-In PostgreSQL it seems to be not the case
-COPY is designed for bulk data loading
--->
 
 ---
 
@@ -792,18 +747,18 @@ PostgREST
 
 ### In browser
 
-* Cypex
+- Cypex
 
 ### APEXLang style
 
-* SQLPage
+- SQLPage
 
 ### But there are possible alternatives for the brave
 
-* Buildbase
-* Appsmith
-* Retool
-* Tooljet
+- Buildbase
+- Appsmith
+- Retool
+- Tooljet
 
 <!--
 A tough one to replace, but there are options
@@ -814,9 +769,9 @@ Source: kagi.com. Haven't tried any of this
 
 # No alternatives
 
-* dbms_redefinition
-* Flashback Query (? periods extension seems dead)
-* EBR
+- dbms_redefinition
+- Flashback Query (? periods extension seems dead)
+- EBR
 
 <!--
 MVCC dead tuples are not usable for flashback query
@@ -828,11 +783,11 @@ No AS OF timestamp queries. Is there a plugin for flashback data archve? "period
 
 # Things you'll start loving
 
-* ISO standard SQL (almost)
-* Reliable major version release dates
-* Having the source
-* Extreme extensibility, custom data types, custom operators
-* Transactional DDL (*)
+- ISO standard SQL (almost)
+- Reliable major version release dates
+- Having the source
+- Extreme extensibility, custom data types, custom operators
+- Transactional DDL (*)
 
 <!--
 Having the source means you can ask your LLM questions about it and generate patches. (pretty much what Oracle support is nowadays anyway)
@@ -881,11 +836,11 @@ on-prem releases only
 
 # Things you hate
 
-* XID wraparound
-* Monitoring not so great
-* MVCC bloat on high update rate
+- XID wraparound
+- Monitoring not so great
+- MVCC bloat on high update rate
 
-* collation not an issue anymore
+- collation not an issue anymore
 
 ---
 <!-- _class: topic -->
@@ -930,7 +885,7 @@ Complications:
 # Migrating to PostgreSQL (IV)
 
 Complications:
-* Downtime: what if you can't take extended downtime?
+- Downtime: what if you can't take extended downtime?
 
 <!--
 As with downtime in general, adding a nine will make life exponentially more complicated.
