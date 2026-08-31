@@ -717,7 +717,14 @@ Our domain message (protobuf) persistence service compresses 3 times. No issues 
 
 # Tracing
 
-<!--  -->
+perf
+eBPF
+
+<!--
+Quite funny: with Oracle we have to use perf or eBPF because it is a commercial product.
+With PostgreSQL we have still use perf and eBPF and touch it in the low places since it is 
+open source
+-->
 
 ---
 
