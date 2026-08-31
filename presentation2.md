@@ -263,7 +263,7 @@ example of systemd unit showing the limits
 
 Cloud-native deployment: one PostgreSQL server, one database, one application
 
-Lack of workload isolation or resource anager makes it very hard to do other deployment models
+Lack of workload isolation or resource manager makes it very hard to do other deployment models
 -->
 
 ---
