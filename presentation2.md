@@ -180,6 +180,7 @@ pl/python, pl/perl - server programming languages
 ![bg contain](img/extensions.png)
 
 <!--
+Is there an extension that adds instrumentation?
 -->
 
 ---
@@ -263,7 +264,7 @@ example of systemd unit showing the limits
 
 Cloud-native deployment: one PostgreSQL server, one database, one application
 
-Lack of workload isolation or resource anager makes it very hard to do other deployment models
+Lack of workload isolation or resource manager makes it very hard to do other deployment models
 -->
 
 ---
@@ -729,10 +730,11 @@ DEMO WARNING
 
 ---
 
-# GoldenGate
+# Replication
 
-Logical replication is built in
+Logical (and physical) replication is built in
 Debezium
+GoldenGate supports PostgreSQL as well
 
 <!--  -->
 
