@@ -801,6 +801,9 @@ MVCC dead tuples are not usable for flashback query
 
 -->
 
+<!-- 
+No AS OF timestamp queries. Is there a plugin for flashback data archve?
+-->
 ---
 
 # Things you'll start loving
