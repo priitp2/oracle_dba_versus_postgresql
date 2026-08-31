@@ -957,4 +957,16 @@ Who will pay for it?
 
 ---
 
-# Tnx! Bye!
+# And the story continues...
+
+For us,  it's just the beginning
+Who knows what future brings
+
+<!--
+
+For now, some of this presentation is pure theory, but we will try these thing in the future
+-->
+
+---
+
+# Thank you for listening us! 
