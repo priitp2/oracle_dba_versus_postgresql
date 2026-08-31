@@ -791,7 +791,13 @@ Source: kagi.com. Haven't tried any of this
 # No alternatives
 
 * dbms_redefinition
-* Flashback query
+* Flashback Query (? periods extension seems dead)
+* EBR
+
+<!--
+MVCC dead tuples are not usable for flashback query
+
+-->
 
 ---
 
@@ -799,14 +805,18 @@ Source: kagi.com. Haven't tried any of this
 
 * ISO standard SQL (almost)
 * Reliable major version release dates
+* Having the source
+* Extreme extensibility, custom data types, custom operators
+* Transactional DDL (*)
 
 <!--
+Having the source means you can ask your LLM questions about it and generate patches. (pretty much what Oracle support is nowadays anyway)
 
 Long list of ISO/IEC 9075:2023 features that PostgreSQL does not support: https://www.postgresql.org/docs/current/unsupported-features-sql-standard.html
 
 and some of which Oracle *does* support, like polymorphic table functions
-
 -->
+
 ---
 
 <!-- _class: columns -->
