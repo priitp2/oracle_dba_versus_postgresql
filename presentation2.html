@@ -3118,9 +3118,10 @@ section.topic {
   border-left: 0.3rem solid #555;
 }
 ;" data-marpit-pagination-total="66">
-<h1 id="goldengate">GoldenGate</h1>
-<p>Logical replication is built in<br />
-Debezium</p>
+<h1 id="replication">Replication</h1>
+<p>Logical (and physical) replication is built in<br />
+Debezium<br />
+GoldenGate supports PostgreSQL as well</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="52" data-marpit-fragments="2" data-paginate="true" data-theme="default" data-style="section.columns {
   display: grid;
@@ -3272,7 +3273,7 @@ section.topic {
 <li data-marpit-fragment="6">Tooljet</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-marpit-fragments="2" data-paginate="true" data-theme="default" data-style="section.columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-marpit-fragments="3" data-paginate="true" data-theme="default" data-style="section.columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -3316,10 +3317,11 @@ section.topic {
 <h1 id="no-alternatives">No alternatives</h1>
 <ul>
 <li data-marpit-fragment="1">dbms_redefinition</li>
-<li data-marpit-fragment="2">Flashback query</li>
+<li data-marpit-fragment="2">Flashback Query (? periods extension seems dead)</li>
+<li data-marpit-fragment="3">EBR</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-marpit-fragments="2" data-paginate="true" data-theme="default" data-style="section.columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-marpit-fragments="5" data-paginate="true" data-theme="default" data-style="section.columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -3364,6 +3366,9 @@ section.topic {
 <ul>
 <li data-marpit-fragment="1">ISO standard SQL (almost)</li>
 <li data-marpit-fragment="2">Reliable major version release dates</li>
+<li data-marpit-fragment="3">Having the source</li>
+<li data-marpit-fragment="4">Extreme extensibility, custom data types, custom operators</li>
+<li data-marpit-fragment="5">Transactional DDL (*)</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="57" data-paginate="true" data-class="columns" data-theme="default" data-style="section.columns {
@@ -3938,7 +3943,7 @@ pg_stat_monitor - detailed statement monitoring
 pgcrypto - cryptographic functions
 pgaudit - audit log
 postgres_fdw, oracle_fdw, file_fdw - foreign data wrappers
-pl/python, pl/perl - server programming languages</p></div><div class="bespoke-marp-note" data-index="11" tabindex="0"><p></p></div><div class="bespoke-marp-note" data-index="12" tabindex="0"><p>Linux distributions often come with built in PostgreSQL, Ubuntu also has nice upgrade automation.
+pl/python, pl/perl - server programming languages</p></div><div class="bespoke-marp-note" data-index="11" tabindex="0"><p>Is there an extension that adds instrumentation?</p></div><div class="bespoke-marp-note" data-index="12" tabindex="0"><p>Linux distributions often come with built in PostgreSQL, Ubuntu also has nice upgrade automation.
 Don't be afraid to compile it yourself, it is quite easy - but be mindful of dependencies, it is linked dynamically</p></div><div class="bespoke-marp-note" data-index="13" tabindex="0"><p>2cpu_8G
 Does include contrib extensions (pgcrypto, ...), does not include external extensions (pgvector, pgaudit, ...)</p></div><div class="bespoke-marp-note" data-index="14" tabindex="0"><p>While running databases in k8s haven't been popular in our company, containerized environments are
 essential for swd development these days. Testcontainers make possible to run the integration tests in your laptop,
@@ -3946,7 +3951,7 @@ what not to like?!</p></div><div class="bespoke-marp-note" data-index="15" tabin
 the tests run faster. But there's a catch.</p></div><div class="bespoke-marp-note" data-index="16" tabindex="0"><p>If plugins used for daily life change database behavior in some way, then these plugins must be added to the
 development containers as well. So after some pluggins and pgbouncer...</p></div><div class="bespoke-marp-note" data-index="17" tabindex="0"><p>In this section can go into implementing some Oracle world features in PG</p></div><div class="bespoke-marp-note" data-index="18" tabindex="0"><p>Cloud-native deployment: one PostgreSQL server, one database, one application
 
-Lack of workload isolation or resource anager makes it very hard to do other deployment models</p></div><div class="bespoke-marp-note" data-index="20" tabindex="0"><p>PostgreSQL must be compiled already with the final software destination in mind</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>Compiling PostgreSQL can be faster than running OPatch</p></div><div class="bespoke-marp-note" data-index="22" tabindex="0"><p>Data Guard equivalent, for Broker functionality need Patroni in addition</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>FAST-SYNC and SYNC are Oracle Data Guard terminology
+Lack of workload isolation or resource manager makes it very hard to do other deployment models</p></div><div class="bespoke-marp-note" data-index="20" tabindex="0"><p>PostgreSQL must be compiled already with the final software destination in mind</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>Compiling PostgreSQL can be faster than running OPatch</p></div><div class="bespoke-marp-note" data-index="22" tabindex="0"><p>Data Guard equivalent, for Broker functionality need Patroni in addition</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>FAST-SYNC and SYNC are Oracle Data Guard terminology
 FAST-SYNC - WAL record is written to remote instance memory
 SYNC - WAL record is written to remote instance memory and synced to disk</p></div><div class="bespoke-marp-note" data-index="24" tabindex="0"><p>Provides Data Guard Broker orchestration functionality
 It does not get on the way for queries
@@ -4001,7 +4006,9 @@ Our domain message (protobuf) persistence service compresses 3 times. No issues 
 or python executeMany()
 In PostgreSQL it seems to be not the case
 COPY is designed for bulk data loading</p></div><div class="bespoke-marp-note" data-index="52" tabindex="0"><p></p></div><div class="bespoke-marp-note" data-index="53" tabindex="0"><p>A tough one to replace, but there are options
-Source: kagi.com. Haven't tried any of this</p></div><div class="bespoke-marp-note" data-index="55" tabindex="0"><p>Long list of ISO/IEC 9075:2023 features that PostgreSQL does not support: https://www.postgresql.org/docs/current/unsupported-features-sql-standard.html
+Source: kagi.com. Haven't tried any of this</p></div><div class="bespoke-marp-note" data-index="54" tabindex="0"><p>MVCC dead tuples are not usable for flashback query</p><p>No AS OF timestamp queries. Is there a plugin for flashback data archve?</p></div><div class="bespoke-marp-note" data-index="55" tabindex="0"><p>Having the source means you can ask your LLM questions about it and generate patches. (pretty much what Oracle support is nowadays anyway)
+
+Long list of ISO/IEC 9075:2023 features that PostgreSQL does not support: https://www.postgresql.org/docs/current/unsupported-features-sql-standard.html
 
 and some of which Oracle *does* support, like polymorphic table functions</p></div><div class="bespoke-marp-note" data-index="56" tabindex="0"><p>In July 2017 Oracle moved to a new release model promising &quot;A new major database release every year&quot;
 on-prem releases only</p></div><div class="bespoke-marp-note" data-index="58" tabindex="0"><p>The following section is about strategies of migration</p></div><div class="bespoke-marp-note" data-index="59" tabindex="0"><p>Instead of a frameworks that paper over the diffrences in SQL details, you can instruct your agents to change the code.
