@@ -730,10 +730,11 @@ DEMO WARNING
 
 ---
 
-# GoldenGate
+# Replication
 
-Logical replication is built in
+Logical (and physical) replication is built in
 Debezium
+GoldenGate supports PostgreSQL as well
 
 <!--  -->
 
