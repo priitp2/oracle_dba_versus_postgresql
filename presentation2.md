@@ -746,7 +746,11 @@ Logical replication is built in
 Debezium
 GoldenGate supports PostgreSQL as well
 
-<!--  -->
+<!-- 
+Debezium is CDC solution built on Kafka and Kafka Connect. We will mention it later when we talk about
+migration to PostgreSQL.
+-->
+
 
 ---
 
@@ -866,14 +870,16 @@ on-prem releases only
 
 # Migration from Oracle to PostgreSQL
 
-<!-- The following section is about strategies of migration -->
+<!-- The following section is about strategies of migration.
+
+Very high level and simplified, due to the time limit. -->
 
 ---
 
 # Migrating to PostgreSQL (I)
 
-Coding agents have solved problem with code changes
 Most of the code changes are mechanical, rules based
+Coding agents have solved problem with code migrations in general
 Coding agents need extra pairs of underpants
 
 <!--
@@ -896,25 +902,20 @@ Conceptually simple, once you have a PostgreSQL version of the app:
 # Migrating to PostgreSQL (III)
 
 Complications:
-* Microservices: hundreds of services to migrate
-* Microservices: migration process needs to be automated
+- Microservices: hundreds of services to migrate
+- Microservices: migration process needs to be automated
+- Downtime: what if you can't take extended downtime?
 
+<!--
+As with downtime in general, adding a nine will make life exponentially more complicated, and more expensive.
+-->
 ---
 
 # Migrating to PostgreSQL (IV)
 
-Complications:
-- Downtime: what if you can't take extended downtime?
-
-<!--
-As with downtime in general, adding a nine will make life exponentially more complicated.
--->
----
-
-# Migrating to PostgreSQL (V)
-
 Strategies for downtime reduction:
-* Streaming to reduce the time to synchronise the data
+* Change data capture and streaming changes
+    Reduces the time to synchronise the data
 * "Dual writes": writing to two data stores in the app
     In theory, writes to two data stores can eliminate the downtime
 
@@ -923,7 +924,45 @@ Strategies for downtime reduction:
 Streaming: Debezium works quite well
 How to get the changes from Oracle? Logminer? X-Stream? OLR?
 
+"Dual writes": streaming will help to create the second data store as well
 Corner case with "dual writes" and updates: some downtime might still be needed
+-->
+
+---
+
+# Migrating to PostgreSQL: CDC for the rescue
+
+Oracle can do change data capture in many ways:
+- Log Miner
+- XStream API (for Goldengate licensees)
+
+How go you get changes to the target database?
+- Debezium
+- Goldengate hs
+
+<!--
+We decided to go with XStream and Debezium: we have GG, but do not have GG hs.
+-->
+
+---
+
+# Migrating to PostgreSQL (V)
+
+Component migration using CDC:
+1. Create PostgreSQL database
+2. Create XStream outbound server in Oracle
+3. Create Debezium source connector
+4. Wait until the databases are reasonably in sync
+5. Close Oracle version of the app
+6. Wait until databases are full in sync
+7. Start the PostgreSQL version of the app
+8. Profit!!1!
+
+<!--
+
+This listing skips a few steps, otherwise this would be way too complex to explain and display.
+
+This simplified migration process works reasonably well, but automation is a bitch.
 -->
 ---
 
@@ -932,6 +971,10 @@ Corner case with "dual writes" and updates: some downtime might still be needed
 Conclusion: automation and downtime reduction involve high amount of engineering
 Who will pay for it?
 
+<!--
+Migrating from one database engine to another is cross-organization project (multiple platform engineering teams, dev teams, middle management and
+people from the business side since the downtime.)
+-->
 ---
 
 # And the story continues...
