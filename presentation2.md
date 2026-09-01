@@ -682,29 +682,19 @@ Our domain message (protobuf) persistence service compresses 3 times. No issues 
 
 ---
 
-# Tracing
+<!-- _class: topic -->
 
-perf
-eBPF
-
-<!--
-Quite funny: with Oracle we have to use perf or eBPF because it is a commercial product.
-With PostgreSQL we have still use perf and eBPF and touch it in the low places since it is 
-open source
--->
+# Observability
 
 ---
 
-# Active session history in PostgreSQL
+# Monitoring / OEM
 
-pgsentinel: https://github.com/pgsentinel/pgsentinel
-Samples `pg_stat_activity` and `pg_stat_statements`
+[Percona Monitoring and Management](https://www.percona.com/monitoring/)
+DEMO WARNING
 
-<!--
+<!--  -->
 
-`pg_active_session_history` has 29 dimensions, `pg_stat_statements_history` has 24 dimensions.
-`GV_$ACTIVE_SESSION_HISTORY` has 125
--->
 ---
 
 # Wait interface
@@ -725,12 +715,28 @@ Oracle 23.26.2 has 2350 wait events.
 
 ---
 
-# Monitoring / OEM
+# Active session history in PostgreSQL
 
-[Percona Monitoring and Management](https://www.percona.com/monitoring/)
-DEMO WARNING
+pgsentinel: https://github.com/pgsentinel/pgsentinel
+Samples `pg_stat_activity` and `pg_stat_statements`
 
-<!--  -->
+<!--
+
+`pg_active_session_history` has 29 dimensions, `pg_stat_statements_history` has 24 dimensions.
+`GV_$ACTIVE_SESSION_HISTORY` has 125
+-->
+---
+
+# Tracing
+
+perf
+eBPF
+
+<!--
+Quite funny: with Oracle we have to use perf or eBPF because it is a commercial product.
+With PostgreSQL we have still use perf and eBPF and touch it in the low places since it is 
+open source
+-->
 
 ---
 
