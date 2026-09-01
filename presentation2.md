@@ -692,6 +692,18 @@ open source
 
 ---
 
+# Active session history in PostgreSQL
+
+pgsentinel: https://github.com/pgsentinel/pgsentinel
+Samples `pg_stat_activity` and `pg_stat_statements`
+
+<!--
+
+`pg_active_session_history` has 29 dimensions, `pg_stat_statements_history` has 24 dimensions.
+`GV_$ACTIVE_SESSION_HISTORY` has 125
+-->
+---
+
 # Wait interface
 
 VIEW pg_stat_activity
@@ -703,6 +715,9 @@ TODO
 Being actively improved upon, PG18 especially
 
 pg_stat_activity is v$session equivalent.
+Does every plugin publish their own wait events?
+Oracle 23.26.2 has 2350 wait events.
+
 -->
 
 ---
