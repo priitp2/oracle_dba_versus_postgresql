@@ -5,6 +5,7 @@ pooler_mode = "transaction"
 auth_type = "scram"
 query_parser = "on"
 passthrough_auth = "enabled_plain"
+load_balancing_strategy = "round_robin"
 lsn_check_delay = 0
 lsn_check_interval = 2_000
 openmetrics_port = 9090
