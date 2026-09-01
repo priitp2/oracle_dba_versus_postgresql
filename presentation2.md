@@ -523,10 +523,13 @@ But... ask do you actually need it. In Postgres there is less need.
 # Partitioning for OLTP (II)
 
 Downside: most of the queries do not benefit from partition pruning
+Oracle fixes this with global indexes
+This comes with tradeoffs
 
 <!--
 For example: show me my last 10 transactions
 -->
+<!--
 ---
 
 ![bg contain](img/partitioning_nopart.png)
@@ -538,7 +541,7 @@ For example: show me my last 10 transactions
 ---
 
 ![bg contain](img/partitioning_global.png)
-
+-->
 ---
 
 # Partitioning: Global indexes
