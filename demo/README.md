@@ -1,3 +1,7 @@
+# What is it?
+
+Demo environment with two PostgreSQL servers managed with Patroni. It also has pgDog for query load balancing and Percona Monitoring and Management services up.
+
 # Creating the environment
 
 ```
@@ -16,8 +20,8 @@ password: demo123
 
 ## Database accounts
 
-demo / demo123
-postgres / demo123
+* demo / demo123
+* postgres / demo123
 
 ## Databases
 
@@ -42,4 +46,3 @@ To monitor pgDog:
 * Enter grafana.com dashboard ID: 24583
 * Press: Load
 * Select the only Data Source available and import it
-
