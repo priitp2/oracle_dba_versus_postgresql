@@ -61,11 +61,16 @@ postgresql:
         pg_stat_monitor.pgsm_bucket_time: '60s'
         pg_stat_monitor.pgsm_max_buckets: 240
         pg_stat_monitor.pgsm_histogram_buckets: 20
+        pg_stat_monitor.pgsm_query_max_len: 2048
+        pg_stat_monitor.pgsm_normalized_query: 1
     pg_hba:
-        - host all all 0.0.0.0/0 scram-sha-256
+        - host demo demo 127.0.0.1/32 trust
+        - host all pmm-agent 0.0.0.0/0 trust
         - host replication replication 0.0.0.0/0 scram-sha-256
+        - host all all 0.0.0.0/0 scram-sha-256
         - local all postgres peer
-        - local all pmm-agent peer
+        - local all pmm-agent trust
+        - local demo demo trust
         - local all all scram-sha-256
 
 tags:

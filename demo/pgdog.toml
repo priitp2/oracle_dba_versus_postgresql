@@ -30,3 +30,15 @@ name = "postgres"
 host = "pg2"
 port = 5432
 role = "auto"
+
+[[databases]]
+name = "demo"
+host = "pg1"
+port = 5432
+role = "auto"
+
+[[databases]]
+name = "demo"
+host = "pg2"
+port = 5432
+role = "auto"

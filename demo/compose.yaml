@@ -1,5 +1,24 @@
 name: oracle_dba_versus_postgresql
 services:
+    pmm:
+        image: percona/pmm-server:3
+        # sadly no ARM image available
+        platform: linux/amd64
+        container_name: pmm
+        volumes:
+            - pmm_data:/srv
+        ports:
+            - 8443:8443
+        environment:
+            - PMM_ENABLE_UPDATES=0
+        networks:
+            - demo-net
+        post_start:
+            # The first sleep is pretty random, but need to wait until the stack is fully up before changing the password
+            - command: sleep 1m
+            - command: "bash -c '[ ! -h /usr/share/grafana/data ] && ln -s /srv/grafana /usr/share/grafana/data || echo linkalreadyexists'"
+            - command: "bash -c '[ ! -f /srv/admin_password_changed ] && grafana cli --homepath=/usr/share/grafana --config=/etc/grafana/grafana.ini admin reset-admin-password demo123 || echo adminpasswordchanged'"
+            - command: touch /srv/admin_password_changed
     etcd1:
         image: quay.io/coreos/etcd:v3.5.33
         container_name: etcd1
@@ -107,3 +126,4 @@ volumes:
     etcd3_data:
     pg1_data:
     pg2_data:
+    pmm_data:
