@@ -91,9 +91,16 @@ In this presentation adressing some issue that Oracle professionals might face w
 <!--
 
 "We have to thank Oracle for [PostgreSQL's popularity] because when they bought MySQL, everybody was afraid that they were going to dominate where MySQL went to, and that was the beginning of the PostgreSQL ascendancy," Stonebraker said.
+-->
 
+---
+
+![bg contain](img/ludo.png)
+
+<!--
 Ludovico Caldara passionately disagreed, pointing out PostgreSQL rise correlates well with AWS popularity.
 
+https://www.linkedin.com/feed/update/urn:li:activity:7470111757714210816?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7470111757714210816%2C7470190330773131264%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287470190330773131264%2Curn%3Ali%3Aactivity%3A7470111757714210816%29
 -->
 
 ---
@@ -166,13 +173,14 @@ Is there an extension that adds instrumentation?
 
 <!-- 
 Linux distributions often come with built in PostgreSQL, Ubuntu also has nice upgrade automation.
+Official PostgreSQL repository comes with many-many-many extra extensions also, already compiled.
 Don't be afraid to compile it yourself, it is quite easy - but be mindful of dependencies, it is linked dynamically
 -->
 
 ---
 
 ```
-./configure --prefix=/usr/pg-software/pg-18-18061 --enable-rpath\
+./configure --prefix=/usr/pg-software/pg-18-18061 --enable-rpath \
   --with-libnuma --with-ssl=openssl --with-icu --with-liburing \
   --with-lz4 --with-uuid=e2fs --with-libcurl --with-libxml --with-zstd
 make world-bin && make check && make install-world-bin
