@@ -32,6 +32,7 @@ password: demo123
 
 ```
 docker compose exec pg2 sudo -u postgres -i /var/lib/pgsql/runload.sh
+docker compose exec pg2 sudo -u postgres -i /var/lib/pgsql/runload.sh 600
 ```
 
 # Patroni commands

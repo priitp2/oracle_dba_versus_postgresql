@@ -1,7 +1,9 @@
 #!/bin/bash
 
 export PGPASSWORD="demo123"
-runtime=1200
+runtime="${1:-1200}"
+
+echo "Running time: ${runtime}s"
 
 # Run modifications
 /usr/pgsql-18/bin/pgbench -h pgdog -p 6432 -U demo \
