@@ -8,7 +8,7 @@ Demo environment with two PostgreSQL servers managed with Patroni. It also has p
 docker compose up
 ```
 
-It will take a few minutes to warm up and register everything.
+It will take a few minutes to warm up and register everything. PMM takes a few min to register the targets.
 
 # Services
 
@@ -32,6 +32,13 @@ password: demo123
 
 ```
 docker compose exec pg2 sudo -u postgres -i /var/lib/pgsql/runload.sh
+```
+
+# Patroni commands
+
+```
+docker compose exec pg1 sudo -u postgres -i /var/lib/pgsql/patroni01_venv/bin/patronictl -c /var/lib/pgsql/patroni.yml topology
+docker compose exec pg1 sudo -u postgres -i /var/lib/pgsql/patroni01_venv/bin/patronictl -c /var/lib/pgsql/patroni.yml switchover
 ```
 
 # Monitoring
