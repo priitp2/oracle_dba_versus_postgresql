@@ -66,6 +66,12 @@ fi
 # If it already exists, it will fail, does not matter
 pmm-admin add external-serverless --server-insecure-tls --url="http://${PATRONIHOST}:8080/metrics" --skip-connection-check --external-name="${PATRONIHOST}-patroni" --cluster=demo --group=patroni
 
+# Register pgdog
+# If it already exists, it will fail, does not matter
+if [ "$PATRONIHOST" == "pg1" ]; then
+    pmm-admin add external-serverless --server-insecure-tls --url="http://pgdog:9090/metrics" --skip-connection-check --external-name="pgdog" --cluster=demo --group=pgdog
+fi
+
 # Just wait
 while :; do
     sleep 1h

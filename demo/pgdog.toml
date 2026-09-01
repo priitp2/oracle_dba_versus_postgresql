@@ -7,6 +7,8 @@ query_parser = "on"
 passthrough_auth = "enabled_plain"
 lsn_check_delay = 0
 lsn_check_interval = 2_000
+openmetrics_port = 9090
+openmetrics_namespace = "pgdog_"
 
 [admin]
 name = "admin"
