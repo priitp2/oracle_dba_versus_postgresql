@@ -808,6 +808,7 @@ open source
 * ISO standard SQL (almost)
 * Reliable major version release dates
 * Having the source
+* LISTEN/NOTIFY is surprisingly useful
 * Extreme extensibility, custom data types, custom operators
 * Transactional DDL (*)
 
