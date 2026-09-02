@@ -29,7 +29,7 @@ style: |
 
 # Oracle DBA discovers PostgreSQL
 ### Ilmar Kerm & Priit Piipuu
-### set-date-here
+### 2026-09-05
 
 ---
 
@@ -323,7 +323,7 @@ PostgreSQL is open source, so patches can be provided against the source code, w
 # Data Protection
 
 Physical standby is built in and used for queries
-page checksums now default
+Page checksums now default
 
 <!--
 Data Guard equivalent, for Broker functionality need Patroni in addition
@@ -360,7 +360,7 @@ Patroni
 DEMO WARNING
 
 <!--
-Provides Data Guard Broker orchestration functionality
+Physical standby is built in, but you need something to manage it, automate failovers and switchovers, you need the "Data Guard Broker" functionality.
 It does not get on the way for queries
 So easy
 REST API for all actions
@@ -500,12 +500,6 @@ Not all database features - like temp tables, advisory locks, pub/sub are connec
 
 ---
 
-# pgDog
-
-DEMO WARNING
-
----
-
 # Partitioning for OLTP (I)
 
 Data life cycle management: dropping old partition is faster than delete
@@ -641,7 +635,7 @@ Commercial offerings:
 - pg_tde (requires Percona Server for PostgreSQL)
 
 <!--
-Protection against 
+Protection against loss of physical media (hard drives) only - nothing else!
 TDE can be self-induced-ransomware if key is lost - NB! All copies of the database are encrypted with the same master key
 -->
 
@@ -678,64 +672,6 @@ PG16 started writing relation files with posix_fallocate() that disables BTRFS c
 Keep WAL on XFS/EXT4
 
 Our domain message (protobuf) persistence service compresses 3 times. No issues nor excessive CPU usage even at 4000+TPS
--->
-
----
-
-<!-- _class: topic -->
-
-# Observability
-
----
-
-# Monitoring / OEM
-
-[Percona Monitoring and Management](https://www.percona.com/monitoring/)
-DEMO WARNING
-
-<!--  -->
-
----
-
-# Wait interface
-
-VIEW pg_stat_activity
-VIEW pg_wait_events - 274 events in 18.6
-EXTENSION pg_wait_sampling
-
-<!--
-TODO
-Being actively improved upon, PG18 especially
-
-pg_stat_activity is v$session equivalent.
-Does every plugin publish their own wait events?
-Oracle 23.26.2 has 2350 wait events.
-
--->
-
----
-
-# Active session history in PostgreSQL
-
-pgsentinel: https://github.com/pgsentinel/pgsentinel
-Samples `pg_stat_activity` and `pg_stat_statements`
-
-<!--
-
-`pg_active_session_history` has 29 dimensions, `pg_stat_statements_history` has 24 dimensions.
-`GV_$ACTIVE_SESSION_HISTORY` has 125
--->
----
-
-# Tracing
-
-perf
-eBPF
-
-<!--
-Quite funny: with Oracle we have to use perf or eBPF because it is a commercial product.
-With PostgreSQL we have still use perf and eBPF and touch it in the low places since it is 
-open source
 -->
 
 ---
@@ -795,8 +731,73 @@ Source: kagi.com. Haven't tried any of this
 
 <!--
 MVCC dead tuples are not usable for flashback query
-No AS OF timestamp queries. Is there a plugin for flashback data archve? "periods" extension seems dead, not build anymore and max pg15
+No AS OF timestamp queries. Is there a plugin for flashback data archve? "periods" extension seems dead, not built anymore and max pg15
 
+-->
+
+---
+
+<!-- _class: topic -->
+
+# Observability
+
+---
+
+# Graphical monitoring
+
+[Percona Monitoringing and Management](https://www.percona.com/monitoring/)
+* Grafana, VictoriaMetrics, ClickHouse in a nice package
+* Plenty of pre-packaged dashboards
+* Still can add your own Grafana dashboards (like pgDog)
+* Has Query Analytics
+
+Ask Ilmar for a demo
+
+<!--
+Demo also part of "demo" package
+-->
+
+---
+
+# Wait interface
+
+VIEW pg_stat_activity
+VIEW pg_wait_events - 274 events in 18.6
+EXTENSION pg_wait_sampling
+
+<!--
+TODO
+Being actively improved upon, PG18 especially
+
+pg_stat_activity is v$session equivalent.
+Does every plugin publish their own wait events?
+Oracle 23.26.2 has 2350 wait events.
+
+-->
+
+---
+
+# Active session history in PostgreSQL
+
+pgsentinel: https://github.com/pgsentinel/pgsentinel
+Samples `pg_stat_activity` and `pg_stat_statements`
+
+<!--
+
+`pg_active_session_history` has 29 dimensions, `pg_stat_statements_history` has 24 dimensions.
+`GV_$ACTIVE_SESSION_HISTORY` has 125
+-->
+---
+
+# Tracing
+
+perf
+eBPF
+
+<!--
+Quite funny: with Oracle we have to use perf or eBPF because it is a commercial product.
+With PostgreSQL we have still use perf and eBPF and touch it in the low places since it is 
+open source
 -->
 
 ---
@@ -861,9 +862,10 @@ on-prem releases only
 
 - XID wraparound
 - Monitoring not so great
-- MVCC bloat on high update rate
+- MVCC bloat on high update rate *
+  https://www.cs.cmu.edu/~pavlo/blog/2023/04/the-part-of-postgresql-we-hate-the-most.html
 
-- collation not an issue anymore
+- collation not an issue anymore *
 
 ---
 <!-- _class: topic -->
@@ -979,7 +981,7 @@ people from the business side since the downtime.)
 
 # And the story continues...
 
-For us,  it's just the beginning
+For us, it's just the beginning
 Who knows what future brings
 
 <!--
@@ -989,4 +991,15 @@ For now, some of this presentation is pure theory, but we will try these thing i
 
 ---
 
-# Thank you for listening us! 
+![bg contain](img/demosetup.png)
+
+<!--
+Demo requires docker and is in the "demo" folder. check the README.md file.
+-->
+---
+
+![bg contain](img/qrcode_github.com.png)
+
+<!--
+Thank you for listening us!
+-->
