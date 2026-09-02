@@ -31,6 +31,8 @@ if [ ! -f /var/lib/pgsql/data/demopgsetupdone ]; then
         sudo -u postgres -i /usr/pgsql-18/bin/pgbench -h localhost -p 5432 -U demo -s 2 -i demo
     fi
     touch /var/lib/pgsql/data/demopgsetupdone
+    # need to chown, otherwise pg_rewind has problems
+    chown postgres:postgres /var/lib/pgsql/data/demopgsetupdone
 fi
 
 

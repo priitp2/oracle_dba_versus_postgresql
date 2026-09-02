@@ -8,7 +8,7 @@ Demo environment with two PostgreSQL servers managed with Patroni. It also has p
 docker compose up
 ```
 
-It will take a few minutes to warm up and register everything. PMM takes a few min to register the targets.
+During the first run (when services are created for the first time), it will take a few minutes to warm up and register everything. PMM takes a few min to register the targets.
 
 # Services
 
@@ -28,11 +28,38 @@ password: demo123
 * demo
 * postgres
 
-# Running load
+# Tests
+
+## Running load
+
+The command line argument is the how long is the test running, in seconds (default 1200s)
+This test executes two pgbench runners, one 100tps with writing that are all routed to leader instance and one 1000tps with read-only queries, that are load-balanced.
 
 ```
-docker compose exec pg2 sudo -u postgres -i /var/lib/pgsql/runload.sh
-docker compose exec pg2 sudo -u postgres -i /var/lib/pgsql/runload.sh 600
+docker compose exec demotestrunner runload.sh
+docker compose exec demotestrunner runload.sh 600
+```
+
+## Failover timings
+
+Start this test (max running time 30m) and then you can do database failure tests (killing container) or switchovers and this test will report the timings how long the service was down for clients.
+
+Via pgDog:
+
+```
+docker compose exec demotestrunner runfailtest.py
+```
+
+Direct to PostgreSQL leader node:
+
+```
+docker compose exec demotestrunner runfailtest.py --direct
+```
+
+Direct to PostgreSQL any node (leader or replica):
+
+```
+docker compose exec demotestrunner runfailtest.py --direct-any
 ```
 
 # Patroni commands

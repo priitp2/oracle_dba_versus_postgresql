@@ -115,6 +115,13 @@ services:
         volumes:
             - ./pgdog.toml:/pgdog/pgdog.toml
             - ./users.toml:/pgdog/users.toml
+    demotestrunner:
+        image: demotestrunner
+        container_name: demotestrunner
+        build:
+            context: demotestrunner/
+        networks:
+            - demo-net
 
 networks:
     demo-net:
