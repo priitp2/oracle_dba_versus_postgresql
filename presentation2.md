@@ -64,6 +64,30 @@ Blog: https://ilmarkerm.eu,
 
 ---
 
+# Prologue
+
+Oracle tech is great, but...
+the world has changed
+
+<!--
+Thanks to Trump, tech idenpendence from US is now in the agenda
+Oracle has been rising prices, a lot for some, like us (200x) - unacceptable
+-->
+
+---
+
+# Prologue
+
+Must choose an alternative
+And make it work
+
+<!--
+So Oracle is out... we needed to find an alternative and then make it work as best as we can
+This presentation is not about comparing technologies, it is about Oracle dinosaurs exploring PostgreSQL world any trying to make it work.
+-->
+
+---
+
 <!-- _class: topic -->
 
 # What is PostgreSQL?
@@ -101,6 +125,15 @@ In this presentation adressing some issue that Oracle professionals might face w
 Ludovico Caldara passionately disagreed, pointing out PostgreSQL rise correlates well with AWS popularity.
 
 https://www.linkedin.com/feed/update/urn:li:activity:7470111757714210816?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7470111757714210816%2C7470190330773131264%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287470190330773131264%2Curn%3Ali%3Aactivity%3A7470111757714210816%29
+-->
+
+---
+
+![bg contain](img/scott.png)
+
+<!--
+Scott argues, that docker had a lot to do with PostgreSQL popularity with devs.
+Early MySQL images were not good, but Postgres early images were good.
 -->
 
 ---
@@ -160,7 +193,7 @@ Negative - often maintainer is a single person
 ![bg contain](img/extensions.png)
 
 <!--
-Is there an extension that adds instrumentation?
+PostGIS - better than Oracle Spatial
 -->
 
 ---
@@ -849,7 +882,7 @@ Version | First promise | Actual release
 20c | NULL | NULL
 21c | 1H CY2021 | 2021-08-13
 22c | NULL | NULL
-23c | 1H CY2024 | 2026-01-27
+23c | 1H CY2024 | 2026-01-27 (EE only?)
 </div>
 
 <!--
