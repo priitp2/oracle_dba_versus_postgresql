@@ -404,11 +404,6 @@ etcd can be shared between multiple clusters
 
 ![bg contain](img/patroni.png)
 
-<!--
-If plugins used for daily life change database behavior in some way, then these plugins must be added to the
-development containers as well. So after some pluggins and pgbouncer...
--->
-
 ---
 
 # Client discovery in high availability
@@ -457,7 +452,14 @@ Avoid "a lot of connections"
 - idle connections aren't free
 - connection storms are dreadful
 
-Poolers
+<!-- 
+PostgreSQL does not like "a lot of connections" - just like Oracle. Reduce heavily, or use a pooler.
+-->
+
+---
+
+# Scalability - poolers
+
 - pgBouncer
 - pgDog 🐕️ ✨
 - Odyssey (⚠️ Yandex owned)
