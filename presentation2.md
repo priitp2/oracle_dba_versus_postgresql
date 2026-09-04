@@ -468,6 +468,7 @@ PostgreSQL does not like "a lot of connections" - just like Oracle. Reduce heavi
 PostgreSQL does not like "a lot of connections" - just like Oracle. Reduce heavily, or use a pooler.
 pgBouncer - old and trusted workhorse
 pgDog - new and shiny
+Avoid pgPool-II at any cost
 -->
 
 ---
@@ -479,9 +480,10 @@ Be mindful of "eventual consistency"
 > synchronous_commit can be set to remote_apply
 
 <!-- 
+No RAC
+To achieve horizontal scalability common pattern is to have one leader-writer database and many read only replicas
+Reads can be load balanced over replicas - to do it automatically you need pgDog
 If more (write) scalability is needed - YugabyteDB, CockroachDB
-
-Avoid pgPool-II at any cost
 -->
 
 ---
