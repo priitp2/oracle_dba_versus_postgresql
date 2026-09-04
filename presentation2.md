@@ -682,10 +682,13 @@ Use OS provided volume manager:
 - LVM
 - ZFS/BTRFS pools
 
+LVM can migrate volumes online
+- pvmove
+
 or just rely on your SAN/NAS
 
 <!--
-LVM does have online storage migration with built in pmove command
+LVM does have online storage migration with built in pvmove command
 -->
 
 ---
