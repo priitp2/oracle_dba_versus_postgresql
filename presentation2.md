@@ -29,7 +29,7 @@ style: |
 
 # Oracle DBA discovers PostgreSQL
 ### Ilmar Kerm & Priit Piipuu
-### 2026-09-05
+### 2026-10-16
 
 ---
 
@@ -765,7 +765,7 @@ Source: kagi.com. Haven't tried any of this
 
 # No alternatives
 
-- dbms_redefinition
+- dbms_redefinition (? pg_repack)
 - Flashback Query (? periods extension seems dead)
 - EBR
 
