@@ -366,7 +366,7 @@ Data Guard equivalent, for Broker functionality need Patroni in addition
 
 ### Commit protection modes
 
-synchronous_commit | local durable commit | FAST-SYNC | SYNC | standby query consistency 
+synchronous_commit | commit_wait=wait | FAST-SYNC | SYNC | standby query consistency 
 -- | -- | -- | -- | --
 **remote_apply** | ✅ | ✅ | ✅ | ✅
 **on** | ✅ | ✅ | ✅ | ❌
