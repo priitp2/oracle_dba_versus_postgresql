@@ -29,7 +29,7 @@ style: |
 
 # Oracle DBA discovers PostgreSQL
 ### Ilmar Kerm & Priit Piipuu
-### 2026-10-16
+### 2026-11-19
 
 ---
 
@@ -697,6 +697,8 @@ LVM does have online storage migration with built in pvmove command
 
 # Compression
 
+Postgres attepmts compression automatically if row size >2k
+
 BTRFS filesystem
 or just rely on your SAN/NAS
 
@@ -765,7 +767,6 @@ Source: kagi.com. Haven't tried any of this
 
 # No alternatives
 
-- dbms_redefinition (? pg_repack)
 - Flashback Query (? periods extension seems dead)
 - EBR
 
